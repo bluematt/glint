@@ -1,6 +1,6 @@
 # glint
 
-TODO: Write a description here
+A simple 2d game framework for [Crystal](https://crystal-lang.org/) using [Raylib](https://www.raylib.com/).
 
 ## Installation
 

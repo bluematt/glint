@@ -7,3 +7,7 @@ authors:
 crystal: 1.8.2
 
 license: MIT
+
+dependencies:
+  raylib-cr:
+    github: sol-vin/raylib-cr
