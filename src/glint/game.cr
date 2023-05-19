@@ -16,10 +16,10 @@ module Glint
     @scene : Scene
 
     # The target (maximum ideal) framerate.
-    @target_framerate : Int32 = DEFAULT_FRAMERATE
+    property target_framerate : Int32 = DEFAULT_FRAMERATE
 
     # Whether to display FPS.
-    @display_fps : Bool = false
+    property display_fps : Bool = false
 
     # Creates a new game with optional size, title and framerate.
     def initialize(width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, title = DEFAULT_TITLE, @target_framerate = DEFAULT_FRAMERATE)
@@ -31,7 +31,7 @@ module Glint
 
     # Runs the game's mainloop: handle inputs, update game state, output.
     def run
-      framerate = @target_framerate
+      Raylib.set_target_fps(@target_framerate)
 
       Raylib.wait_time(0.01)
       delta = Game.frame_time
@@ -42,6 +42,8 @@ module Glint
         Raylib.begin_drawing
         _draw
         Raylib.end_drawing
+
+        Raylib.set_target_fps(@target_framerate)
 
         delta = Game.frame_time
       end
@@ -81,10 +83,8 @@ module Glint
     end
 
     # Display the current FPS.
-    #
-    # TODO display this in the window, not the console.
     def display_fps
-      puts framerate
+      Raylib.draw_fps(0, 0)
     end
 
     # Returns whether the game should quit.
@@ -97,11 +97,12 @@ module Glint
       @window.close
     end
 
-    # Sets the framerate.
-    def framerate=(fps : UInt16)
-      @target_framerate = fps
-      Raylib.set_target_fps(@target_framerate)
-    end
+    # # Sets the framerate.
+    # def target_framerate=(fps : UInt16)
+    #   puts "*** SETTING FRAMERATE #{fps}"
+    #   @target_framerate = fps
+    #   Raylib.set_target_fps(@target_framerate)
+    # end
 
     # Returns the target framerate.
     #
