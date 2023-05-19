@@ -12,9 +12,9 @@ module Examples
 
     # Set up the "game".
     def initialize
-      super(800, 600, "Raylib logo", 60)
+      super(800, 600, "Raylib logo")
       @display_fps = true
-      # @scene = Scene.new(Color::WHITE)
+      @scene = Scene.new(Color::WHITE)
 
       # The icon will be added to the default scene.  We will not need to
       # tell this to be drawn later.

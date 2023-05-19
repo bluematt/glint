@@ -10,7 +10,7 @@ class MyGame < Game
 
   # Draw a simple label.
   def draw
-    Label.draw("Hello, World!")
+    Label.draw("Hello, World!", color: Color::WHITE)
   end
 end
 
