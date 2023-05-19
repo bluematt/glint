@@ -2,6 +2,14 @@
 
 A simple 2d game framework for [Crystal](https://crystal-lang.org/) using [Raylib](https://www.raylib.com/).
 
+## Prerequisites
+
+Raylib should already be installed.  If not, you can install it with [Homebrew](https://brew.sh/).
+
+```bash
+$ brew install raylib
+```
+
 ## Installation
 
 1. Add the dependency to your `shard.yml`:
