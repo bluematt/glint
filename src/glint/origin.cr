@@ -10,6 +10,9 @@ module Glint
     BottomCenter
     BottomRight
 
+    # Other (e.g. aliases)
+    Center
+
     def offset
       case self
       when TopCenter
@@ -18,7 +21,7 @@ module Glint
         return vec(1, 0)
       when MiddleLeft
         return vec(0, 0.5)
-      when MiddleCenter
+      when MiddleCenter, Center
         return vec(0.5, 0.5)
       when MiddleRight
         return vec(1, 0.5)
@@ -38,3 +41,5 @@ module Glint
     end
   end
 end
+
+alias Origin = Glint::Origin
