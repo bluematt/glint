@@ -7,6 +7,7 @@ end
 
 require "./glint/color.cr"
 require "./glint/cursor.cr"
+require "./glint/font.cr"
 require "./glint/game.cr"
 require "./glint/origin.cr"
 require "./glint/preload.cr"
