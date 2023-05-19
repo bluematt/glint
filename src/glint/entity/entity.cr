@@ -14,21 +14,21 @@ module Glint
       # Whether the entity is visible or not.
       property visible : Bool = true
 
-      protected def _update!(delta)
-        @children.each { |e| e._update!(delta) }
-        update!(delta)
+      protected def _update(delta)
+        @children.each { |e| e._update(delta) }
+        update(delta)
       end
 
       # Update the entity.
-      def update!(delta); end
+      def update(delta); end
 
-      protected def _draw!
-        @children.each { |e| e._draw! }
-        draw!
+      protected def _draw
+        @children.each { |e| e._draw }
+        draw
       end
 
       # Draw the entity.
-      def draw!; end
+      def draw; end
 
       # Add an entity to the entity's children.
       def <<(other : Entity)

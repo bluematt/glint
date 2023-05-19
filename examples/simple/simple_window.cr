@@ -13,11 +13,11 @@ module Examples
       @icon.pivot = Glint::Origin::MiddleCenter
     end
 
-    def draw!
-      @icon.draw!
+    def draw
+      @icon.draw
     end
   end
 end
 
 game = Examples::SimpleWindowExample.new
-game.run!
+game.run

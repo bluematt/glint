@@ -37,7 +37,7 @@ module Glint
     # Closes the `Window`.
     #
     # This also has the effect that it closes the `Game`.
-    def close!
+    def close
       Raylib.close_window
     end
 

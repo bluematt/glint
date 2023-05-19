@@ -19,7 +19,7 @@ module Glint
       end
 
       # Draw the texture at it's natural position.
-      def draw!
+      def draw
         draw_at!(@position)
       end
 

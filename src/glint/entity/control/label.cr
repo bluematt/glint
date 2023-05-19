@@ -7,7 +7,7 @@ module Glint
 
       def initialize(@text, @position, @font_size, @color); end
 
-      def draw!
+      def draw
         self.inspect
       end
     end

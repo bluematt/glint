@@ -1,7 +1,7 @@
 module Glint
   # The main game class.
   #
-  # Extend the `Game` class with your own `draw!` and `update!(delta : Float)` methods
+  # Extend the `Game` class with your own `draw` and `update(delta : Float)` methods
   # to create simple games, or use the `Scene` class to create more complex games.
   class Game
     DEFAULT_WIDTH     = 1920
@@ -30,50 +30,50 @@ module Glint
     end
 
     # Runs the game's mainloop: handle inputs, update game state, output.
-    def run!
+    def run
       framerate = @target_framerate
 
       Raylib.wait_time(0.01)
       delta = Game.frame_time
 
       until should_quit?
-        _update!(delta) if delta > 0.0
+        _update(delta) if delta > 0.0
 
         Raylib.begin_drawing
-        _draw!
+        _draw
         Raylib.end_drawing
 
         delta = Game.frame_time
       end
 
-      quit!
+      quit
     end
 
     # Updates the current game and the `Scene`.
-    private def _update!(delta : Float)
+    private def _update(delta : Float)
       if scene = @scene
-        scene._update!(delta)
+        scene._update(delta)
       end
-      update!(delta)
+      update(delta)
     end
 
     # Performs custom updates.
-    def update!(delta : Float); end
+    def update(delta : Float); end
 
     # Draws the current game.
-    private def _draw!
+    private def _draw
       if scene = @scene
         clear_background(scene.background_color)
-        scene._draw!
+        scene._draw
       end
-      draw!
+      draw
       display_fps if @display_fps
     end
 
     # Performs custom drawing.
     #
     # Overload this method to draw directly, bypassing the automatic drawing of `Scene`s.
-    def draw!; end
+    def draw; end
 
     # Clears the background to the specified color.
     def clear_background(color : Color?)
@@ -93,8 +93,8 @@ module Glint
     end
 
     # Quits the game.
-    def quit!
-      @window.close!
+    def quit
+      @window.close
     end
 
     # Sets the framerate.

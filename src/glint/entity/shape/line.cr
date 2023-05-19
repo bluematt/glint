@@ -1,7 +1,7 @@
 module Glint
   module Shape
     class Line < Shape
-      def draw!
+      def draw
         return if @foreground_color.nil?
       end
     end
