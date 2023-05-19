@@ -31,6 +31,8 @@ class MyGame < Game
 end
 ```
 
+### Running and compilation
+
 To run while developing:
 
 ```bash
@@ -42,6 +44,14 @@ To compile for release:
 ```bash
 $ crystal build my_game.cr --release --no-debug
 $ ./my_game
+```
+
+### Documentation
+
+To generate the HTML documentation for the Glint API:
+
+```bash
+$ crystal docs lib/glint/src/glint.cr
 ```
 
 ## Development
