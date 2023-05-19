@@ -79,7 +79,7 @@ module Glint
     # If you don't want to see this, simple override the `Game#draw` method, even if it's
     # empty:
     #
-    # ```crystal
+    # ```
     # class MyGame < Game
     #   def draw; end
     # end
