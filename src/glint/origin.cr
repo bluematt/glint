@@ -33,7 +33,7 @@ module Glint
       end
     end
 
-    def from(extents)
+    def from(extents : Vector2) : Vector2
       extents * offset
     end
   end
