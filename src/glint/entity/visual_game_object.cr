@@ -5,7 +5,7 @@ module Glint
       property position : Vector2 = Vector2.new
 
       # The game object's rotation.
-      property rotation : Float32 = 0.0
+      property rotation = 0.0
 
       # The game object's point of transformation.
       property pivot : Origin = Origin::TopLeft
