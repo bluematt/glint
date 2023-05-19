@@ -1,4 +1,5 @@
 module Glint
+  # A two dimensional vector.
   class Vector2
     property x, y = 0.0
 
