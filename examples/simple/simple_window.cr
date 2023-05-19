@@ -19,20 +19,21 @@ module Examples
       # tell this to be drawn later.
       @icon = Sprite.preload("./Raylib_logo.png")
       @icon.position = @window.center
-      @icon.pivot = Glint::Origin::MiddleCenter
+      @icon.pivot = Origin::Center
       @scene << @icon
 
       # The label, on the other hand, is not added to the scene, therefore
       # it will need to be drawn manually by calling it's `draw` method in the
       # `Game::draw` method.
-      @label = Label.new("Glint #{Glint::VERSION}", @window.top_center, color: Color::BLACK)
-      @label.pivot = Glint::Origin::TopCenter
+      @label = Label.new("This is Glint v.#{Glint::VERSION}!", @window.top_center, color: Color::BLACK)
+      @label.pivot = Origin::TopCenter
     end
 
     # Rotate the icon by 15° every second (using *delta*).
+    #
+    # TODO Randomise label color
     def update(delta)
       @icon.rotation += 15 * delta
-      @label.color = Color.random
     end
 
     # Draw stuff.
