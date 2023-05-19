@@ -10,8 +10,8 @@ module Glint
   end
 end
 
-require "./box.cr"
 require "./circle.cr"
 require "./line.cr"
 require "./polygon.cr"
+require "./rectangle.cr"
 require "./square.cr"

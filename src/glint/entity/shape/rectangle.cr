@@ -3,4 +3,5 @@ module Glint
     class Rectangle < Shape; end
   end
 end
+
 alias Rectangle = Glint::Shape::Rectangle

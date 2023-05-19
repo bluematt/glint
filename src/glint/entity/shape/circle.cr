@@ -3,4 +3,5 @@ module Glint
     class Circle < Shape; end
   end
 end
+
 alias Circle = Glint::Shape::Circle
