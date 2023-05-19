@@ -1,5 +1,6 @@
 module Glint
   module Input
+    # Utility module for managing mouse-related features.
     module Mouse
       # The mouse buttons.
       private BUTTONS = ["left", "right", "middle", "side", "extra", "forward", "back"]
@@ -15,37 +16,37 @@ module Glint
         {% end %}
 
         {% for action in STATES %}
-          # Return whether the `Mouse::Button` is in the {{action.id}} state.
-          def {{action.id}}?
+          # Returns whether the `Mouse::Button` is in the {{action.id}} state.
+          def {{action.id}}? : Bool
             Raylib.mouse_button_{{action.id}}? self
           end
         {% end %}
       end
 
-      # Return the x-coordinate of the the cursor position.
-      def x : Int
+      # Returns the x-coordinate of the the cursor position.
+      def self.x : Int
         Raylib.get_mouse_x
       end
 
-      # Return the y-coordinate of the the cursor position.
-      def y : Int
+      # Returns the y-coordinate of the mouse position.
+      def self.y : Int
         Raylib.get_mouse_y
       end
 
-      # Return the cursor position.
-      def position : Vector2
+      # Returns the mouse position.
+      def self.position : Vector2
         vec(Raylib.get_mouse_x, Raylib.get_mouse_y)
       end
 
       {% for action in ["pressed", "down", "released", "up"] %}
-        # Return whether `mouse_button` is in the {{action.id}} state.
-        def self.{{action.id}}?(mouse_button : Button)
+        # Returns whether `mouse_button` is in the {{action.id}} state.
+        def self.{{action.id}}?(mouse_button : Button) : Bool
           mouse_button.{{action.id}}?
         end
 
         {% for button in Button.constants %}
-          # Return whether `Mouse::Button::{{button.id}}` is in the {{action.id}} state.
-          def self.{{button.id.stringify.downcase.id}}_{{action.id}}?
+          # Returns whether `Mouse::Button::{{button.id}}` is in the {{action.id}} state.
+          def self.{{button.id.stringify.downcase.id}}_{{action.id}}? : Bool
             Button::{{button.id}}.{{action.id}}?
           end
         {% end %}
