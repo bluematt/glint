@@ -82,7 +82,7 @@ module Glint
 
     # Return whether the game should quit.
     def should_quit?
-      Raylib.close_window?
+      @window.close?
     end
 
     # Quit the game.
