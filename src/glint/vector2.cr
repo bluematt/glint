@@ -62,6 +62,11 @@ def vec(x : Number, y : Number) : Vector2
   Vector2.new(x, y)
 end
 
+# Return a new `Vector2` from a `Raylib::Vector2`.
+def vec(raylib_vec : Raylib::Vector2) : Vector2
+  vec(raylib_vec.x, raylib_vec.y)
+end
+
 # Return a new `Vector2`(0, 0).
 def vec : Vector2
   Vector2.new
