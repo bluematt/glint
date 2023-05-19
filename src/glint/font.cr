@@ -8,3 +8,5 @@ module Glint
     end
   end
 end
+
+alias Font = Glint::Font::Font
