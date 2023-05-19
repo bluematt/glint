@@ -9,7 +9,7 @@ A simple 2d game framework for [Crystal](https://crystal-lang.org/) using [Rayli
    ```yaml
    dependencies:
      glint:
-       github: your-github-user/glint
+       github: bluematt/glint
    ```
 
 2. Run `shards install`
@@ -18,9 +18,18 @@ A simple 2d game framework for [Crystal](https://crystal-lang.org/) using [Rayli
 
 ```crystal
 require "glint"
-```
 
-TODO: Write usage instructions here
+class MyGame < Game
+  def initialize
+    @display_fps = true
+    super(800, 600)
+  end
+
+  def draw
+    Label.draw("Hello, World!")
+  end
+end
+```
 
 ## Development
 
@@ -28,7 +37,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/glint/fork>)
+1. Fork it (<https://github.com/bluematt/glint/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
