@@ -84,7 +84,7 @@ module Glint
 
     # Display the current FPS.
     def display_fps
-      Raylib.draw_fps(0, 0)
+      Raylib.draw_fps(8, 8)
     end
 
     # Returns whether the game should quit.
