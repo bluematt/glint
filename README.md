@@ -22,7 +22,7 @@ require "glint"
 class MyGame < Game
   def initialize
     @display_fps = true
-    super(800, 600)
+    super(800, 600, "My Awesome Game")
   end
 
   def draw
