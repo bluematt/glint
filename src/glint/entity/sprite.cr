@@ -25,7 +25,7 @@ module Glint
 
       # Draw the texture at a specific position.
       def draw_at!(position)
-        Raylib.draw_texture_pro(@texture, @extents.to_rect, position.to_rect(@extents), @pivot.from(@extents).to_raylib_vector2, @rotation, @tint.to_raylib_color)
+        Raylib.draw_texture_pro(@texture, @extents.to_rect, position.to_rect(@extents), @pivot.from(@extents).to_raylib, @rotation, @tint.to_raylib)
       end
     end
   end

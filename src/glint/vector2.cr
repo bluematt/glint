@@ -44,7 +44,7 @@ module Glint
     #
     # TODO Check whether inlining actually makes any difference.
     @[AlwaysInline]
-    def to_raylib_vector2 : Raylib::Vector2
+    def to_raylib : Raylib::Vector2
       Raylib::Vector2.new x: @x, y: @y
     end
 

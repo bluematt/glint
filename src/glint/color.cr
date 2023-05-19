@@ -29,7 +29,7 @@ module Glint
 
     # Return the Raylib representation of this color.
     @[AlwaysInline]
-    def to_raylib_color
+    def to_raylib
       Raylib::Color.new r: @r, g: @g, b: @b, a: @a
     end
   end

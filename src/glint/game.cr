@@ -77,7 +77,7 @@ module Glint
 
     # Clears the background to the specified color.
     def clear_background(color : Color?)
-      Raylib.clear_background(color.to_raylib_color) if color
+      Raylib.clear_background(color.to_raylib) if color
     end
 
     # Display the current FPS.
