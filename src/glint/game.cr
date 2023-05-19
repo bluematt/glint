@@ -67,7 +67,7 @@ module Glint
     # Draws the current game.
     private def _draw
       if scene = @scene
-        clear_background(scene.background_color)
+        Game.clear_background(scene.background_color)
         scene._draw
       end
       draw
@@ -80,7 +80,7 @@ module Glint
     def draw; end
 
     # Clears the background to the specified color.
-    def clear_background(color : Color?)
+    def self.clear_background(color : Color?)
       Raylib.clear_background(color.to_raylib) if color
     end
 
