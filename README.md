@@ -31,6 +31,19 @@ class MyGame < Game
 end
 ```
 
+To run while developing:
+
+```bash
+$ crystal run my_game.cr
+```
+
+To compile for release:
+
+```bash
+$ crystal build my_game.cr --release --no-debug
+$ ./my_game
+```
+
 ## Development
 
 TODO: Write development instructions here
