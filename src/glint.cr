@@ -6,6 +6,7 @@ module Glint
 end
 
 require "./glint/color.cr"
+require "./glint/cursor.cr"
 require "./glint/game.cr"
 require "./glint/origin.cr"
 require "./glint/preload.cr"
@@ -16,8 +17,6 @@ require "./glint/tween.cr"
 require "./glint/vector2.cr"
 require "./glint/velocity.cr"
 require "./glint/window.cr"
-
 require "./glint/audio/audio.cr"
-
 require "./glint/entity/entity.cr"
 require "./glint/input/input.cr"
