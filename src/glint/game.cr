@@ -26,7 +26,9 @@ module Glint
       @window = Window.new(width, height, title)
       @scene = Scene.new
       @scene.background_color = Color::WHITE
-      @scene << Label.new("Glint #{Glint::VERSION}", vec(width/2, height/2), 20, Color::WHITE)
+      label : Label = Label.new("Glint #{Glint::VERSION}", vec(width/2, height/2))
+      label.pivot = Glint::Origin::MiddleCenter
+      @scene << label
     end
 
     # Runs the game's mainloop: handle inputs, update game state, output.
