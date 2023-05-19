@@ -97,20 +97,6 @@ module Glint
       @window.close
     end
 
-    # # Sets the framerate.
-    # def target_framerate=(fps : UInt16)
-    #   puts "*** SETTING FRAMERATE #{fps}"
-    #   @target_framerate = fps
-    #   Raylib.set_target_fps(@target_framerate)
-    # end
-
-    # Returns the target framerate.
-    #
-    # This may differ from the `framerate`.
-    def target_framerate
-      @target_framerate
-    end
-
     # Returns the current (real) framerate.
     #
     # This may differ from the `target_framerate`.
