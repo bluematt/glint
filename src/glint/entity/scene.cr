@@ -6,6 +6,10 @@ module Glint
     class Scene < Glint::Entity::Entity
       # The scene's background color.
       property background_color : Glint::Color?
+
+      def initialize; end
+
+      def initialize(@background_color); end
     end
   end
 end

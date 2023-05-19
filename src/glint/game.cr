@@ -24,8 +24,7 @@ module Glint
     # Creates a new game with optional size, title and framerate.
     def initialize(width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, title = DEFAULT_TITLE, @target_framerate = DEFAULT_FRAMERATE)
       @window = Window.new(width, height, title)
-      @scene = Scene.new
-      @scene.background_color = Color::WHITE
+      @scene = Scene.new(Color::BLACK)
     end
 
     # Runs the game's mainloop: handle inputs, update game state, output.
@@ -73,11 +72,26 @@ module Glint
 
     # Performs custom drawing.
     #
-    # Overload this method to draw directly, bypassing the automatic drawing of `Scene`s.
+    # Overload this method to draw directly, bypassing the automatic drawing of `Scene`s
+    # (`Scene`s are still drawn, if they have anything to draw...).
     #
-    # By default, it shows a simple label displaying the name and version of the library.
+    # By default, it shows a simple label displaying the name and version of the Glint library.
+    # If you don't want to see this, simple override the `Game#draw` method, even if it's
+    # empty:
+    #
+    # ```crystal
+    # class MyGame < Game
+    #   def draw; end
+    # end
+    #
+    # # or even this, if you're feeling feisty:
+    #
+    # class Game
+    #   def draw; end
+    # end
+    # ```
     def draw
-      label = Label.new("Glint v.#{Glint::VERSION}!", @window.center)
+      label = Label.new "Glint v.#{Glint::VERSION}!", @window.center, color: Color::WHITE
       label.pivot = Origin::Center
       label.draw
     end

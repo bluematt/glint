@@ -14,6 +14,7 @@ module Examples
     def initialize
       super(800, 600, "Raylib logo", 60)
       @display_fps = true
+      # @scene = Scene.new(Color::WHITE)
 
       # The icon will be added to the default scene.  We will not need to
       # tell this to be drawn later.
@@ -25,8 +26,8 @@ module Examples
       # The label, on the other hand, is not added to the scene, therefore
       # it will need to be drawn manually by calling it's `draw` method in the
       # `Game::draw` method.
-      @label = Label.new("This is Glint v.#{Glint::VERSION}!", @window.top_center, color: Color::BLACK)
-      @label.pivot = Origin::TopCenter
+      @label = Label.new("This is Glint v.#{Glint::VERSION}!", @window.bottom_center, color: Color::BLACK)
+      @label.pivot = Origin::BottomCenter
     end
 
     # Rotate the icon by 15° every second (using *delta*).
