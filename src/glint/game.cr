@@ -26,16 +26,13 @@ module Glint
       @window = Window.new(width, height, title)
       @scene = Scene.new
       @scene.background_color = Color::WHITE
-      label : Label = Label.new("Glint #{Glint::VERSION}", vec(width/2, height/2))
-      label.pivot = Glint::Origin::MiddleCenter
-      @scene << label
     end
 
     # Runs the game's mainloop: handle inputs, update game state, output.
     def run
       Raylib.set_target_fps(@target_framerate)
 
-      Raylib.wait_time(0.01)
+      Raylib.wait_time(0.0000001)
       delta = Game.frame_time
 
       until should_quit?
@@ -77,7 +74,13 @@ module Glint
     # Performs custom drawing.
     #
     # Overload this method to draw directly, bypassing the automatic drawing of `Scene`s.
-    def draw; end
+    #
+    # By default, it shows a simple label displaying the name and version of the library.
+    def draw
+      label = Label.new("Glint v.#{Glint::VERSION}!", @window.center)
+      label.pivot = Origin::Center
+      label.draw
+    end
 
     # Clears the background to the specified color.
     def self.clear_background(color : Color?)
