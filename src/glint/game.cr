@@ -76,7 +76,7 @@ module Glint
     def draw!; end
 
     # Clears the background to the specified color.
-    def clear_background(color : Color)
+    def clear_background(color : Color?)
       Raylib.clear_background(color.to_raylib_color) if color
     end
 
