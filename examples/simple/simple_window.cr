@@ -1,20 +1,47 @@
 require "../../src/glint.cr"
 
 module Examples
+  # A simple window example.
+  #
+  # This example displays a single rotating sprite in the middle of the game window.
   class SimpleWindowExample < Game
+    # A sprite.
     @icon : Sprite
+    # A label.
+    @label : Label
 
+    # Set up the "game".
     def initialize
       super(800, 600, "Raylib logo", 60)
       @display_fps = true
+
+      # The icon will be added to the default scene.  We will not need to
+      # tell this to be drawn later.
       @icon = Sprite.preload("./Raylib_logo.png")
-      # @icon = Glint::Entity::Sprite.preload("./Crystal_lang_logo.gif")
       @icon.position = @window.center
       @icon.pivot = Glint::Origin::MiddleCenter
+      @scene << @icon
+
+      # The label, on the other hand, is not added to the scene, therefore
+      # it will need to be drawn manually by calling it's `draw` method in the
+      # `Game::draw` method.
+      @label = Label.new("Glint #{Glint::VERSION}", @window.top_center, color: Color::BLACK)
+      @label.pivot = Glint::Origin::TopCenter
     end
 
+    # Rotate the icon by 15° every second (using *delta*).
+    def update(delta)
+      @icon.rotation += 15 * delta
+      @label.color = Color.random
+    end
+
+    # Draw stuff.
+    #
+    # We don't need to explicitly `draw` the `@icon` as it's part of the default `Scene`,
+    # `@scene`.  `Scene`s and their contents are automatically drawn (if they are not hidden).
     def draw
-      @icon.draw
+      # @icon.draw
+      @label.draw
     end
   end
 end
