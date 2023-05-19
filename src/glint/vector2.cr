@@ -38,9 +38,19 @@ module Glint
       vec(@x / other.x, @y / other.y)
     end
 
+    # Returns a Raylib compatible version of the vector.
+    #
+    # This method is always inlined.
+    #
+    # TODO Check whether inlining actually makes any difference.
     @[AlwaysInline]
-    def to_raylib_vector2
+    def to_raylib_vector2 : Raylib::Vector2
       Raylib::Vector2.new x: @x, y: @y
+    end
+
+    # Returns a readable version.
+    def to_s(io)
+      io << "(" << @x << "," << @y << ")"
     end
   end
 end
