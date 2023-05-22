@@ -1,5 +1,3 @@
-require "./entity.cr"
-
 module Glint
   module Entity
     # A scene manages collections of entities.

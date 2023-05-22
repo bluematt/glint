@@ -1,6 +1,6 @@
 module Glint
   module Entity
-    class Sprite < VisualGameObject
+    class Sprite < Entity
       @texture : Raylib::Texture2D
       @tint : Color = Color::WHITE
 
