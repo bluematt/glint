@@ -1,20 +1,32 @@
 module Glint
-  # An entity is responsible for keeping track of it's own an child entities.
   module Entity
+    # A generic entity class.
+    #
+    # An entity is responsible for keeping track of it's own an child entities.
     abstract class Entity
-      # # Whether the entity has been initialised.
-      # @initialized = false
+      # Returns the entity's parent, if any.
+      getter parent : (Entity | Game)?
 
-      # The entity's parent, if any.
-      @parent : (Entity | Game)?
-
-      # The child entities of this entity.
-      @children : Array(Entity) = [] of Entity
+      # Returns the child entities.
+      getter children : Array(Entity) = [] of Entity
 
       # Whether the entity is visible or not.
       property visible : Bool = true
 
+      # Whether to draw this entity's child entities.
+      property draw_children : Bool = true
+
+      # Whether to draw this entity above its child entities.
+      property draw_above_children : Bool = false
+
+      # How and when the entity (and its children) is updated.
+      property update_mode : UpdateMode = UpdateMode::Inherit
+
+      # Updates the entity and its children.
       protected def _update(delta)
+        # Don't update if the entity is disabled.
+        return if update_mode.disabled?
+
         @children.each { |e| e._update(delta) }
         update(delta)
       end
@@ -23,21 +35,51 @@ module Glint
       def update(delta); end
 
       protected def _draw
-        @children.each { |e| e._draw }
+        # Draws the children under the current entity.
+        if @draw_children
+          @children.each { |e| e._draw } unless draw_above_children
+        end
         draw
+        # Draws the children above the current entity.
+        if @draw_children
+          @children.each { |e| e._draw } if draw_above_children
+        end
       end
 
-      # Draw the entity.
+      # Draws the entity.
+      #
+      # This performs any drawing specific for *this* entity.  Any entities in
+      # `@children` will be drawn automatically (if applicable).
       def draw; end
 
-      # Add an entity to the entity's children.
+      # Add an entity to the entity's children for managing later.
+      #
+      # ```
+      # class MyScene < Scene  # Scene is an Entity
+      #   def initialize
+      #     @spaceship = Spaceship.new
+      #     self << @spaceship
+      #   end
+      # end
+      # ```
       def <<(other : Entity)
         @children << other
       end
 
-      # Return the entity's parent.
-      def parent
-        @parent
+      # Remove an entity from the entity's children, if it exists.
+      #
+      # ```
+      # if health <= 0
+      #   self.delete @spaceship
+      # end
+      # ```
+      def delete(other : Entity)
+        @children.reject { |e| e == other }
+      end
+
+      # Returns whether the entity is in the children.
+      def has?(other : Entity)
+        @children.any? other
       end
     end
   end
