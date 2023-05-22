@@ -21,6 +21,9 @@ module Glint
     # Whether to display FPS.
     property display_fps : Bool = false
 
+    # Whether the game is paused.
+    @paused = false
+
     # Creates a new game with optional size, title and framerate.
     def initialize(width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, title = DEFAULT_TITLE, @target_framerate = DEFAULT_FRAMERATE)
       @window = Window.new(width, height, title)
