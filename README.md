@@ -12,7 +12,14 @@ $ brew install raylib
 
 ## Installation
 
-1. Add the dependency to your `shard.yml`:
+1. Create a new Crystal app:
+
+    ```bash
+    $ crystal init app my_app
+    $ cd my_app
+    ```
+
+2. Add the Glint dependency to your `shard.yml`:
 
    ```yaml
    dependencies:
@@ -20,7 +27,11 @@ $ brew install raylib
        github: bluematt/glint
    ```
 
-2. Run `shards install`
+3. Install the shards:
+
+    ```bash
+    $ shards install
+    ```
 
 ## Usage
 
@@ -62,9 +73,13 @@ To generate the HTML documentation for the Glint API:
 $ crystal docs lib/glint/src/glint.cr
 ```
 
+### Running tests
+
+TODO: Write tests.
+
 ## Development
 
-TODO: Write development instructions here
+Glint is under active development.
 
 ## Contributing
 
