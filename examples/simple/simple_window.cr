@@ -9,6 +9,8 @@ module Examples
     @icon : Sprite
     # A label.
     @label : Label
+    # How much time has elapsed.
+    @elapsed = 0.0
 
     # Set up the "game".
     def initialize
@@ -30,13 +32,11 @@ module Examples
       @label.pivot = Origin::BottomCenter
     end
 
-    # Rotate the icon by 30° every second (using *delta*).
+    # Rotate the icon by 30° every second (using *delta*), and change the label color.
     #
     # We use a block (see https://crystal-lang.org/reference/latest/syntax_and_semantics/blocks_and_procs.html)
     # here to create a pseudo-`update` method that doesn't require us to subclass
     # `Sprite` and create an `update` method for it.
-    #
-    # TODO Randomise label color
     def update(delta)
       per_frame_rotation = 30 * delta
 
@@ -47,6 +47,13 @@ module Examples
 
       # Short form, do the other 15° of the rotation.
       @icon.update(delta) { |e| e.rotation += per_frame_rotation / 2 }
+
+      # Change the color once every second.
+      @elapsed += delta
+      if @elapsed > 1.0
+        @elapsed = @elapsed - 1
+        @label.color = Color.random
+      end
     end
 
     # Draw stuff.
