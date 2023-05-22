@@ -132,5 +132,5 @@ module Glint
     end
   end
 end
-
+# Convenience alias for `Glint::Game`.
 alias Game = Glint::Game

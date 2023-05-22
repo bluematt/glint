@@ -4,4 +4,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Audio::SoundEffect`.
 alias SoundEffect = Glint::Audio::SoundEffect

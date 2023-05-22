@@ -4,4 +4,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Physics::KinematicBody`.
 alias KinematicBody = Glint::Physics::KinematicBody

@@ -34,5 +34,5 @@ module Glint
     end
   end
 end
-
+# Convenience alias for `Glint::Color`.
 alias Color = Glint::Color

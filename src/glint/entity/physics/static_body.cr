@@ -4,4 +4,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Physics::StaticBody`.
 alias StaticBody = Glint::Physics::StaticBody

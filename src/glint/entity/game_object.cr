@@ -1,6 +1,6 @@
 module Glint
   module Entity
-    # A game object.
-    abstract class GameObject < Glint::Entity::Entity; end
+    # A generic game object.
+    abstract class GameObject < Entity; end
   end
 end

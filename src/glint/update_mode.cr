@@ -10,8 +10,9 @@ module Glint
     # Always updates the entity (and its children).
     Always
     # Prevents the entity (and its children) from being updated.
-    Disable
+    Disabled
   end
 end
 
+# Convenience alias for `Glint::UpdateMode`.
 alias UpdateMode = Glint::UpdateMode

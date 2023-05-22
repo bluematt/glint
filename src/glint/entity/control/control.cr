@@ -1,6 +1,7 @@
 module Glint
   module Control
-    class Control < Glint::Entity::VisualGameObject; end
+    # An abstract class representing a visual control entity.
+    abstract class Control < Glint::Entity::VisualGameObject; end
   end
 end
 

@@ -4,4 +4,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Shape::Polygon`.
 alias Polygon = Glint::Shape::Polygon

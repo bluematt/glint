@@ -156,5 +156,5 @@ module Glint
     end
   end
 end
-
+# Convenience alias for `Glint::Window`.
 alias Window = Glint::Window

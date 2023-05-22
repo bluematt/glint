@@ -59,4 +59,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Cursor`.
 alias Cursor = Glint::Cursor

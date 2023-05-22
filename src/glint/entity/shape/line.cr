@@ -8,4 +8,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Shape::Line`.
 alias Line = Glint::Shape::Line

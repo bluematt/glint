@@ -1,7 +1,7 @@
 module Glint
-  # Handle preloading.
+  # Allows for frontloading of external resources.
   module Preload
-    # Preload an image into memory.
+    # Preload a texture.
     def self.texture(filename)
       texture = Raylib.load_texture(filename)
       raise "Could not load texture #{filename}" unless texture
@@ -9,3 +9,6 @@ module Glint
     end
   end
 end
+
+# Convenience alias for `Glint::Preload`.
+alias Preload = Glint::Preload
