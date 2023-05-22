@@ -30,11 +30,23 @@ module Examples
       @label.pivot = Origin::BottomCenter
     end
 
-    # Rotate the icon by 15° every second (using *delta*).
+    # Rotate the icon by 30° every second (using *delta*).
+    #
+    # We use a block (see https://crystal-lang.org/reference/latest/syntax_and_semantics/blocks_and_procs.html)
+    # here to create a pseudo-`update` method that doesn't require us to subclass
+    # `Sprite` and create an `update` method for it.
     #
     # TODO Randomise label color
     def update(delta)
-      @icon.rotation += 15 * delta
+      per_frame_rotation = 30 * delta
+
+      # Long form, do the first 15° of the rotation.
+      @icon.update(delta) do |entity|
+        entity.rotation += per_frame_rotation / 2
+      end
+
+      # Short form, do the other 15° of the rotation.
+      @icon.update(delta) { |e| e.rotation += per_frame_rotation / 2 }
     end
 
     # Draw stuff.

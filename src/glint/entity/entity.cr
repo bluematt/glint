@@ -56,7 +56,8 @@ module Glint
           return
         else
           @children.each { |e| e._update(delta) }
-          update(delta)
+          # Pass self in as a block so that we can apply any yield'ed callbacks to it.
+          update(delta) { self }
         end
       end
 
@@ -64,6 +65,13 @@ module Glint
       #
       # Updates are only applied if the `update_mode` allows it.
       def update(delta); end
+
+      # Updates the entity with a block.
+      #
+      # Updates are only applied if the `update_mode` allows it.
+      def update(delta, &)
+        yield self
+      end
 
       # Draws the entity and its children.
       #
