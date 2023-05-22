@@ -7,6 +7,12 @@ module Glint
       raise "Could not load texture #{filename}" unless texture
       texture
     end
+
+    # Preload a font.
+    def self.font(filename); end
+
+    # Preload a sound effect.
+    def self.sound_effect(filename); end
   end
 end
 
