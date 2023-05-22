@@ -15,6 +15,10 @@ module Glint
       Raylib::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
     end
 
+    def +(other : Vector2)
+      return vec(@x + other.x, @y + other.y)
+    end
+
     # Multiply the vector by a factor.
     def *(factor : Number)
       vec(@x * factor, @y * factor)
