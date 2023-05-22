@@ -1,12 +1,14 @@
 module Glint
   module Control
+    # An entity that displays some text.
     class Label < Control
-      DEFAULT_TEXT      = ""
+      # The default text.
+      DEFAULT_TEXT = ""
+      # The default font size.
       DEFAULT_FONT_SIZE = 20
-      DEFAULT_POSITION  = vec()
       DEFAULT_COLOR     = Color::BLACK
-      DEFAULT_FONT      = Font.default
-      DEFAULT_SPACING   = 1
+      # DEFAULT_FONT      = Font.default
+      DEFAULT_SPACING = 1
 
       property text : String
       property font_size : Int32 = DEFAULT_FONT_SIZE
@@ -41,4 +43,5 @@ module Glint
   end
 end
 
+# Convenience alias for `Glint::Control::Label`.
 alias Label = Glint::Control::Label
