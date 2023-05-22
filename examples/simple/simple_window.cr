@@ -23,6 +23,7 @@ module Examples
       @icon = Sprite.preload("./Raylib_logo.png")
       @icon.position = @window.center
       @icon.pivot = Origin::Center
+      @icon.tint = Color::RED
       @scene << @icon
 
       # The label, on the other hand, is not added to the scene, therefore
@@ -40,6 +41,15 @@ module Examples
     def update(delta)
       per_frame_rotation = 30 * delta
 
+      # Change the color once every second.
+      @elapsed += delta
+      if @elapsed > 1.0
+        @elapsed = @elapsed - 1
+        random_color = Color.random
+        @icon.tint = random_color
+        @label.color = random_color
+      end
+
       # Long form, do the first 15° of the rotation.
       @icon.update(delta) do |entity|
         entity.rotation += per_frame_rotation / 2
@@ -47,13 +57,6 @@ module Examples
 
       # Short form, do the other 15° of the rotation.
       @icon.update(delta) { |e| e.rotation += per_frame_rotation / 2 }
-
-      # Change the color once every second.
-      @elapsed += delta
-      if @elapsed > 1.0
-        @elapsed = @elapsed - 1
-        @label.color = Color.random
-      end
     end
 
     # Draw stuff.
