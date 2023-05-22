@@ -30,5 +30,6 @@ module Glint
     end
   end
 end
+
 # Convenience alias for `Glint::Entity::Sprite`.
 alias Sprite = Glint::Entity::Sprite

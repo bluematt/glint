@@ -41,5 +41,6 @@ module Glint
     end
   end
 end
+
 # Convenience alias for `Glint::Origin`.
 alias Origin = Glint::Origin

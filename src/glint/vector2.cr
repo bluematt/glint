@@ -55,6 +55,7 @@ module Glint
     end
   end
 end
+
 # Convenience alias for `Glint::Vector2`.
 alias Vector2 = Glint::Vector2
 
