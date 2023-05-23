@@ -9,6 +9,7 @@ module Glint
 end
 
 require "./number.cr"
+require "./vector2.cr"
 
 require "./glint/color.cr"
 require "./glint/cursor.cr"
@@ -22,7 +23,6 @@ require "./glint/rect.cr"
 require "./glint/signal.cr"
 require "./glint/tween.cr"
 require "./glint/update_mode.cr"
-require "./glint/vector2.cr"
 require "./glint/velocity.cr"
 require "./glint/window.cr"
 require "./glint/audio/audio.cr"
