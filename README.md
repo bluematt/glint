@@ -1,10 +1,10 @@
 # glint
 
-A simple 2d game framework for [Crystal](https://crystal-lang.org/) using [Raylib](https://www.raylib.com/).
+A simple 2D game framework for [Crystal](https://crystal-lang.org/) using [Raylib](https://www.raylib.com/).
 
-Glint was inspired by a number of game engines and libraries, including but not limited to Löve2D, Godot, Dragonruby GTK, microStudio and Solar2D.  It doesn't try to replicate any of them, but it does try to take from them core ideas that make games programming actually fun.
+Glint was inspired by a number of game engines and libraries, including but not limited to [Löve2D](https://love2d.org/),  [Godot Engine](https://godotengine.org/), [DragonRuby GTK](https://dragonruby.org/toolkit/game), [microStudio](https://microstudio.dev/) and [Solar2D](https://solar2d.com/).
 
-Glint aims to make the necessary parts easy, and make the awesome parts possible.
+Glint doesn't try to replicate them, but it does try to take from them core ideas that make games programming actually fun.   It aims to make the necessary parts easy, and make the awesome parts possible.
 
 ## Prerequisites
 
@@ -19,8 +19,9 @@ $ brew install raylib
 1. Create a new Crystal app:
 
     ```bash
-    $ crystal init app my_app
-    $ cd my_app
+    $ cd my-dev-dir            # or wherever you develop
+    $ crystal init app my_app  # create a new Crystal app
+    $ cd my_app                # the new app directory
     ```
 
 2. Add the Glint dependency to your `shard.yml`:
@@ -31,15 +32,17 @@ $ brew install raylib
        github: bluematt/glint
    ```
 
-3. Install the shards:
+3. Install the glint shard and other dependencies:
 
     ```bash
-    $ shards install
+    $ shards install  # install dependencies
+    $ shards check    # optional: make sure dependencies are installed
     ```
 
 ## Usage
 
 ```crystal
+# my_game.cr
 require "glint"
 
 class MyGame < Game
@@ -74,7 +77,9 @@ $ ./my_game
 To generate the HTML documentation for the Glint API:
 
 ```bash
-$ crystal docs lib/glint/src/glint.cr
+$ cd ./lib/glint        # the local glint library
+$ crystal docs          # generate the glint docs locally
+$ open docs/index.html  # open HTML docs in your default browser
 ```
 
 ### Running tests
