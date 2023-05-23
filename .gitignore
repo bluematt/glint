@@ -4,6 +4,15 @@
 /.shards/
 *.dwarf
 
-# Libraries don't need dependency lock
-# Dependencies will be locked in applications that use them
+# Libraries don't need dependency lock.
+# Dependencies will be locked in applications that use them.
 /shard.lock
+
+# Examples have their own project dependencies, etc. These don't need
+# to retained.
+/examples/*/docs/
+/examples/*/lib/
+/examples/*/bin/
+/examples/*/.shards/
+/examples/*/shard.lock
+/examples/*/*.dwarf

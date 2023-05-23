@@ -1,9 +1,8 @@
-require "../../src/glint.cr"
+require "glint"
 
 module Examples
-  # A simple window example.
-  #
-  # This example displays a single rotating sprite in the middle of the game window.
+  # Displays a single rotating sprite of the Raylib logo which
+  # changes color once per second in the middle of the game window.
   class SimpleWindowExample < Game
     # A sprite.
     @icon : Sprite
@@ -20,7 +19,7 @@ module Examples
 
       # The icon will be added to the default scene.  We will not need to
       # tell this to be drawn later.
-      @icon = Sprite.preload("./Raylib_logo.png")
+      @icon = Sprite.preload("./assets/Raylib_logo.png")
       @icon.position = @window.center
       @icon.pivot = Origin::Center
       @icon.tint = Color::RED

@@ -1,5 +1,6 @@
-require "../../src/glint.cr"
+require "glint"
 
+# Opens and window and displays a simple label saying "Hello, World!".
 class MyGame < Game
   # Set the game to be 800x600 and have an awesome title.
   #
