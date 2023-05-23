@@ -29,7 +29,7 @@ module Glint
 
       # Draws the texture at a specific position.
       def draw_at(position)
-        R.draw_texture_pro(@texture, @extents.to_rect, position.to_rect(@extents), @pivot.from(@extents).to_raylib, @rotation, @tint.to_raylib)
+        R.draw_texture_pro(@texture, @extents.to_rect, position.to_rect(@extents), @pivot.from(@extents), @rotation, @tint.to_raylib)
       end
     end
   end
