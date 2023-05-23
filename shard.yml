@@ -10,4 +10,4 @@ license: MIT
 
 dependencies:
   raylib-cr:
-    github: bluematt/raylib-cr
+    github: sol-vin/raylib-cr
