@@ -16,3 +16,7 @@
 /examples/*/.shards/
 /examples/*/shard.lock
 /examples/*/*.dwarf
+
+# Ignore scratch files
+/scratch/
+scratch.cr
