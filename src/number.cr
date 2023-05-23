@@ -1,11 +1,11 @@
 struct Number
   # Convert a number (in radians) to degrees.
   def degrees
-    return self * R::RAD2DEG
+    return self * Glint::R::DEG2RAD
   end
 
   # Convert a number (in degrees) to radians.
   def radians
-    return self * R::DEG2RAD
+    return self * Glint::R::RAD2DEG
   end
 end
