@@ -2,6 +2,10 @@
 
 A simple 2d game framework for [Crystal](https://crystal-lang.org/) using [Raylib](https://www.raylib.com/).
 
+Glint was inspired by a number of game engines and libraries, including but not limited to Löve2D, Godot, Dragonruby GTK, microStudio and Solar2D.  It doesn't try to replicate any of them, but it does try to take from them core ideas that make games programming actually fun.
+
+Glint aims to make the necessary parts easy, and make the awesome parts possible.
+
 ## Prerequisites
 
 Raylib should already be installed.  If not, you can install it with [Homebrew](https://brew.sh/).
