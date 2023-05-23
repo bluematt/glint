@@ -75,7 +75,7 @@ module Glint
     end
 
     # Creates a `Color` from a `Raylib::Color`.
-    def initialize(raylib_color : Raylib::Color)
+    def initialize(raylib_color : R::Color)
       @r = raylib_color.r
       @g = raylib_color.g
       @b = raylib_color.b
@@ -84,7 +84,7 @@ module Glint
 
     # Mixes the `Color` with another `Color` to create a new `Color`.
     def mix(other : Color)
-      self.new(Raylib.color_tint(self.to_raylib, other.to_raylib))
+      self.new(R.color_tint(self.to_raylib, other.to_raylib))
     end
 
     # Mixes the `Color` with a percentage of another `Color` to create a new `Color`.
@@ -106,7 +106,7 @@ module Glint
     # Return the Raylib representation of this color.
     @[AlwaysInline]
     def to_raylib
-      Raylib::Color.new r: @r, g: @g, b: @b, a: @a
+      R::Color.new r: @r, g: @g, b: @b, a: @a
     end
 
     # Picks a random `Color` from the predefined colors.
@@ -132,18 +132,18 @@ module Glint
     # Darkens a `Color` by a percentage.
     # TODO FIXME
     def self.darken(color, percentage)
-      Color.new(Raylib.color_brightness(color.to_raylib, percentage))
+      Color.new(R.color_brightness(color.to_raylib, percentage))
     end
 
     # Lightens a `Color` by a percentage.
     # TODO FIXME
     def self.lighten(color, percentage)
-      Color.new(Raylib.color_brightness(color.to_raylib, percentage))
+      Color.new(R.color_brightness(color.to_raylib, percentage))
     end
 
     # Mixes the `Color` with another `Color` to create a new `Color`.
     def mix(color1, color2)
-      Color.new(Raylib.color_tint(color1.to_raylib, color2.to_raylib))
+      Color.new(R.color_tint(color1.to_raylib, color2.to_raylib))
     end
 
     # Mixes the `Color` with a percentage of another `Color` to create a new `Color`.

@@ -35,19 +35,19 @@ module Glint
 
     # Runs the game's mainloop: handle inputs, update game state, output.
     def run
-      Raylib.set_target_fps(@target_framerate)
+      R.set_target_fps(@target_framerate)
 
-      Raylib.wait_time(0.0000001)
+      R.wait_time(0.0000001)
       delta = Game.frame_time
 
       until should_quit?
         _update(delta) if delta > 0.0
 
-        Raylib.begin_drawing
+        R.begin_drawing
         _draw
-        Raylib.end_drawing
+        R.end_drawing
 
-        Raylib.set_target_fps(@target_framerate)
+        R.set_target_fps(@target_framerate)
 
         delta = Game.frame_time
       end
@@ -104,12 +104,12 @@ module Glint
 
     # Clears the background to the specified color.
     def self.clear_background(color : Color?)
-      Raylib.clear_background(color.to_raylib) if color
+      R.clear_background(color.to_raylib) if color
     end
 
     # Display the current FPS.
     def display_fps
-      Raylib.draw_fps(8, 8)
+      R.draw_fps(8, 8)
     end
 
     # Returns whether the game should quit.
@@ -126,12 +126,12 @@ module Glint
     #
     # This may differ from the `target_framerate`.
     def framerate
-      Raylib.get_fps
+      R.get_fps
     end
 
     # Returns the duration (in seconds) since the last frame.
     def self.frame_time
-      Raylib.get_frame_time
+      R.get_frame_time
     end
   end
 end

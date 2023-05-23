@@ -7,12 +7,12 @@ module Glint
 
     # Convert to a Rectangle with this size.
     def to_rect
-      Raylib::Rectangle.new x: 0, y: 0, width: @x, height: @y
+      R::Rectangle.new x: 0, y: 0, width: @x, height: @y
     end
 
     # Convert to a Rectangle at this position with a size.
     def to_rect(size : Vector2)
-      Raylib::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
+      R::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
     end
 
     def +(other : Vector2)
@@ -49,8 +49,8 @@ module Glint
     #
     # TODO Check whether inlining actually makes any difference.
     @[AlwaysInline]
-    def to_raylib : Raylib::Vector2
-      Raylib::Vector2.new x: @x, y: @y
+    def to_raylib : R::Vector2
+      R::Vector2.new x: @x, y: @y
     end
 
     # Returns a readable version.
@@ -69,7 +69,7 @@ def vec(x : Number, y : Number) : Vector2
 end
 
 # Return a new `Vector2` from a `Raylib::Vector2`.
-def vec(raylib_vec : Raylib::Vector2) : Vector2
+def vec(raylib_vec : Glint::R::Vector2) : Vector2
   vec(raylib_vec.x, raylib_vec.y)
 end
 

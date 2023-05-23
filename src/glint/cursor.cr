@@ -3,17 +3,17 @@ module Glint
   module Cursor
     # Shows the cursor.
     def self.show
-      Raylib.show_cursor
+      R.show_cursor
     end
 
     # Hides the cursor.
     def self.hide
-      Raylib.hide_cursor
+      R.hide_cursor
     end
 
     # Returns whether the cursor is hidden.
     def self.hidden? : Bool
-      Raylib.cursor_hidden?
+      R.cursor_hidden?
     end
 
     # Returns whether the cursor is visible.
@@ -23,17 +23,17 @@ module Glint
 
     # Enables the cursor.
     def self.enable
-      Raylib.enable_cursor
+      R.enable_cursor
     end
 
     # Disables the cursor.
     def self.disable
-      Raylib.disable_cursor
+      R.disable_cursor
     end
 
     # Returns whether the cursor is on the screen.
     def self.on_screen? : Bool
-      Raylib.cursor_on_screen?
+      R.cursor_on_screen?
     end
 
     # Returns the position of the cursor on the screen.
