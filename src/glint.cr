@@ -5,6 +5,8 @@ module Glint
   VERSION = "0.1.0"
 end
 
+require "./number.cr"
+
 require "./glint/color.cr"
 require "./glint/cursor.cr"
 require "./glint/draw_position.cr"
