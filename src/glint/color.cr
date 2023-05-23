@@ -58,12 +58,15 @@ module Glint
       RAYWHITE,
     ]
 
+    # Creates a `Color` with RBGA components.
     def initialize(@r, @g, @b, @a); end
 
+    # Creates a `Color` with RBG components.
     def initialize(@r, @g, @b)
       @a = 255
     end
 
+    # Creates a new `Color`.  Defaults to pure white.
     def initialize
       @r = 255
       @g = 255
@@ -71,13 +74,34 @@ module Glint
       @a = 255
     end
 
-    def mix(other : Color); end
+    # Creates a `Color` from a `Raylib::Color`.
+    def initialize(raylib_color : Raylib::Color)
+      @r = raylib_color.r
+      @g = raylib_color.g
+      @b = raylib_color.b
+      @a = raylib_color.a
+    end
 
+    # Mixes the `Color` with another `Color` to create a new `Color`.
+    def mix(other : Color)
+      self.new(Raylib.color_tint(self.to_raylib, other.to_raylib))
+    end
+
+    # Mixes the `Color` with a percentage of another `Color` to create a new `Color`.
+    # TODO
     def mix(other : Color, percentage : Float32); end
 
-    def lighten(percentage : Float32); end
+    # Lightens the `Color` by a percentage.
+    # TODO
+    def lighten(percentage : Float32)
+      Color.lighten(self, percentage)
+    end
 
-    def darken(percentage : Float32); end
+    # Darkens the `Color` by a percentage.
+    # TODO
+    def darken(percentage : Float32)
+      Color.darken(self, percentage)
+    end
 
     # Return the Raylib representation of this color.
     @[AlwaysInline]
@@ -85,8 +109,46 @@ module Glint
       Raylib::Color.new r: @r, g: @g, b: @b, a: @a
     end
 
+    # Picks a random `Color` from the predefined colors.
     def self.random
       COLORS.sample
+    end
+
+    # Creates a random grey colour in the `Range` *range*.
+    def self.random(range : Range)
+      Color.new(range.sample)
+    end
+
+    # Creates a random colour with the specified RGB `Range`s.
+    def self.random(r_range : Range, g_range : Range, b_range : Range)
+      Color.new(r_range.sample, g_range.sample, b_range.sample)
+    end
+
+    # Creates a random colour with the specified RGBA `Range`s.
+    def self.random(r_range : Range, g_range : Range, b_range : Range, a_range : Range)
+      Color.new(r_range.sample, g_range.sample, b_range.sample, a_range.sample)
+    end
+
+    # Darkens a `Color` by a percentage.
+    # TODO FIXME
+    def self.darken(color, percentage)
+      Color.new(Raylib.color_brightness(color.to_raylib, percentage))
+    end
+
+    # Lightens a `Color` by a percentage.
+    # TODO FIXME
+    def self.lighten(color, percentage)
+      Color.new(Raylib.color_brightness(color.to_raylib, percentage))
+    end
+
+    # Mixes the `Color` with another `Color` to create a new `Color`.
+    def mix(color1, color2)
+      Color.new(Raylib.color_tint(color1.to_raylib, color2.to_raylib))
+    end
+
+    # Mixes the `Color` with a percentage of another `Color` to create a new `Color`.
+    # TODO
+    def mix(color1, color2, percentage)
     end
   end
 end
