@@ -8,13 +8,13 @@ module Glint
       property tint : Color = Color::WHITE
 
       def initialize(@texture : R::Texture2D)
-        @extents = vec(@texture.width, @texture.height)
+        @extents = Vector2.new(@texture.width, @texture.height)
       end
 
       # Creates a sprite from an external texture.
       def initialize(filename : String)
         @texture = Preload.texture(filename)
-        @extents = vec(@texture.width, @texture.height)
+        @extents = Vector2.new(@texture.width, @texture.height)
       end
 
       # Preloads an external texture.

@@ -35,7 +35,7 @@ module Glint
 
       # Returns the mouse position.
       def self.position : Vector2
-        vec(R.get_mouse_x, R.get_mouse_y)
+        Vector2.new(R.get_mouse_x, R.get_mouse_y)
       end
 
       {% for action in ["pressed", "down", "released", "up"] %}

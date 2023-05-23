@@ -16,23 +16,23 @@ module Glint
     def offset
       case self
       when TopCenter
-        return vec(0.5, 0)
+        return Vector2.new(0.5, 0)
       when TopRight
-        return vec(1, 0)
+        return Vector2.new(1, 0)
       when MiddleLeft
-        return vec(0, 0.5)
+        return Vector2.new(0, 0.5)
       when MiddleCenter, Center
-        return vec(0.5, 0.5)
+        return Vector2.new(0.5, 0.5)
       when MiddleRight
-        return vec(1, 0.5)
+        return Vector2.new(1, 0.5)
       when BottomLeft
-        return vec(0, 1)
+        return Vector2.new(0, 1)
       when BottomCenter
-        return vec(0.5, 1)
+        return Vector2.new(0.5, 1)
       when BottomRight
-        return vec(1, 1)
+        return Vector2.new(1, 1)
       else
-        return vec()
+        return Vector2.new
       end
     end
 

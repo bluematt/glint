@@ -5,7 +5,7 @@ module Glint
     # An entity is responsible for keeping track of it's own an child entities.
     abstract class Entity
       # The entity's default position.
-      DEFAULT_POSITION = vec()
+      DEFAULT_POSITION = Vector2.zero
 
       # The entity's default rotation, in degrees.
       DEFAULT_ROTATION = 0.0
@@ -44,7 +44,7 @@ module Glint
       property update_mode : UpdateMode = UpdateMode::Inherit
 
       # Returns game object's extents (maximum dimensions)
-      getter extents : Vector2 = vec()
+      getter extents : Vector2 = Vector2.zero
 
       # Updates the entity and its children.
       #

@@ -32,7 +32,7 @@ module Glint
       end
 
       def get_extents
-        vec(R.measure_text_ex(@font, @text, @font_size, @spacing))
+        Vector2.new(R.measure_text_ex(@font, @text, @font_size, @spacing))
       end
 
       def self.draw(text = DEFAULT_TEXT, position = DEFAULT_POSITION, font_size = DEFAULT_FONT_SIZE, color = DEFAULT_COLOR)

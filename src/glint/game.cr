@@ -16,7 +16,7 @@ module Glint
     @scene : Scene
 
     # Returns the game's absolute position.
-    getter position : Vector2 = vec()
+    getter position : Vector2 = Vector2.zero
 
     # The target (maximum ideal) framerate.
     property target_framerate : Int32 = DEFAULT_FRAMERATE

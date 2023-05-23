@@ -10,16 +10,16 @@ module Glint
     def initialize(@position, @size); end
 
     def initialize(@position, width : Number, height : Number)
-      @size = vec(width, height)
+      @size = Vector2.new(width, height)
     end
 
     def initialize(x : Number, y : Number, @size)
-      @position = vec(x, y)
+      @position = Vector2.new(x, y)
     end
 
     def initialize(x : Number, y : Number, width : Number, height : Number)
-      @position = vec(x, y)
-      @size = vec(width, height)
+      @position = Vector2.new(x, y)
+      @size = Vector2.new(width, height)
     end
 
     # Return the x position of the `Rect`.

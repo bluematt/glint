@@ -53,47 +53,47 @@ module Glint
 
     # Returns the coordinate at the top left of the `Window`.
     def top_left : Vector2
-      vec()
+      Vector2.new
     end
 
     # Returns the coordinate at the top center of the `Window`.
     def top_center : Vector2
-      vec(width/2, 0)
+      Vector2.new(width/2, 0)
     end
 
     # Returns the coordinate at the top righr of the `Window`.
     def top_right : Vector2
-      vec(width, 0)
+      Vector2.new(width, 0)
     end
 
     # Returns the coordinate at the middle left of the `Window`.
     def middle_left : Vector2
-      vec(0, height/2)
+      Vector2.new(0, height/2)
     end
 
     # Returns the coordinate at the middle centre of the `Window`.
     def middle_center : Vector2
-      vec(width/2, height/2)
+      Vector2.new(width/2, height/2)
     end
 
     # Returns the coordinate at the middle right of the `Window`.
     def middle_right : Vector2
-      vec(width, height/2)
+      Vector2.new(width, height/2)
     end
 
     # Returns the coordinate at the bottom left of the `Window`.
     def bottom_left : Vector2
-      vec(0, height)
+      Vector2.new(0, height)
     end
 
     # Returns the coordinate at the bottom center of the `Window`.
     def bottom_center : Vector2
-      vec(width/2, height)
+      Vector2.new(width/2, height)
     end
 
     # Returns the coordinate at the bottom right of the `Window`.
     def bottom_right : Vector2
-      vec(width, height)
+      Vector2.new(width, height)
     end
 
     # Sets whether the `Window` is resizable.
