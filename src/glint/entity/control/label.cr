@@ -28,7 +28,7 @@ module Glint
 
       # Draw the texture at a specific position.
       def draw_at(position)
-        R.draw_text_pro(@font, @text, position, @pivot.from(get_extents), @rotation, @font_size, @spacing, @color.to_raylib)
+        R.draw_text_pro(@font, @text, position, @pivot.from(get_extents), @rotation, @font_size, @spacing, @color)
       end
 
       def get_extents

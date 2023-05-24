@@ -3,7 +3,7 @@ module Glint
     # A scene manages collections of entities.
     class Scene < Entity
       # The scene's background color.
-      property background_color : Glint::Color?
+      property background_color : Color?
 
       # Creates a new scene.
       def initialize; end

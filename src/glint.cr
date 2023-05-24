@@ -10,8 +10,8 @@ end
 
 require "./number.cr"
 require "./vector2.cr"
+require "./color.cr"
 
-require "./glint/color.cr"
 require "./glint/cursor.cr"
 require "./glint/draw_position.cr"
 require "./glint/font.cr"
