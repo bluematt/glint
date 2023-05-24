@@ -1,122 +1,245 @@
-struct Raylib::Vector2
-  # A lot of this is replicated from: https://github.com/unn4m3d/crystaledge/blob/master/src/crystaledge/vector2.cr
+# A wrapper for `Raylib::Vector`.
+#
+# It provides access to a number of Raylib's Raymath vector library
+# functions.
+#
+# Some methods reimplemented from https://github.com/unn4m3d/crystaledge/blob/master/src/crystaledge/vector2.cr
+struct Vector2
+  # The wrapped `Raylib::Vector`.
+  #
+  # It is unlikely that you will need to access this directly.
+  @v : Raylib::Vector2
 
-  # Converts vector to a tuple of values.
-  def values
-    {@x, @y}
+  # Creates a new vector from `Raylib::Vector`.
+  #
+  # This is mostly used internally to convert between the friendly `Vector2`
+  # class and .
+  def initialize(@v : Raylib::Vector2); end
+
+  # Creates a new vector from *x* and *y* components.
+  def initialize(x : Number = 0, y : Number = 0)
+    @v = Raylib::Vector2.new x: x, y: y
   end
 
-  # Creates a new vector.
-  def initialize(@x = 0.0, @y = 0.0); end
+  ZERO = Vector2.new(0, 0)
+  ONE  = Vector2.new(1, 1)
+  UNIT = ONE
 
-  # def initialize(@x : Float64 | Float32 | Int32 = 0.0, @y : Float64 | Float32 | Int32 = 0.0); end
+  UP    = Vector2.new(0, -1)
+  RIGHT = Vector2.new(1, 0)
+  DOWN  = Vector2.new(0, 1)
+  LEFT  = Vector2.new(-1, 0)
 
-  # Creates a new vector from another vector.
-  # TODO Do we need this?  Can't we just consume vectors as-is?
-  def initialize(v : Raylib::Vector2)
-    @x = v.x
-    @y = v.y
+  UP_RIGHT   = UP + RIGHT
+  DOWN_RIGHT = DOWN + RIGHT
+  DOWN_LEFT  = DOWN + LEFT
+  UP_LEFT    = UP + LEFT
+
+  NORTH = UP
+  SOUTH = DOWN
+  WEST  = LEFT
+  EAST  = RIGHT
+
+  NORTH_EAST = NORTH + EAST
+  SOUTH_EAST = SOUTH + EAST
+  SOUTH_WEST = SOUTH + WEST
+  NORTH_WEST = NORTH + WEST
+
+  # Returns the vector's x component.
+  def x
+    @v.x
   end
 
-  # Zero vector
+  # Set the vector's x component.
+  def x=(value : Number)
+    @v.x = value
+  end
+
+  # Returns the vector's y component.
+  def y
+    @v.y
+  end
+
+  # Set the vector's y component.
+  def y=(value : Number)
+    @v.y = value
+  end
+
+  # Returns a (0, 0) vector.
   def self.zero
-    Raylib::Vector2.new
+    ZERO
   end
 
-  def self.unit
-    Raylib::Vector2.new(1, 1)
-  end
-
-  # Fills current vector with zero.
+  # Zeroes the vector.
   def zero!
-    @x = @y = 0
+    @v = ZERO.unsafe
     self
   end
 
-  # Performs component value addition.
-  def +(value : Float64)
-    Raylib::Vector2.new(@x + value, @y + value)
+  # Returns whether the vector is zero.
+  def zero?
+    self == ZERO
   end
 
-  # Performs component vector addition.
-  def +(other)
-    Raylib::Vector2.new(@x + other.x, @y + other.y)
+  # Returns whether the vector is the unit vector.
+  def one?
+    self == ONE
   end
 
-  # Returns a negated vector.
+  # :ditto:
+  def unit?
+    self == UNIT
+  end
+
+  # Returns a (1, 1) vector.
+  def self.one
+    ONE
+  end
+
+  # Alias for `self#one`.
+  def self.unit
+    self.one
+  end
+
+  # Adds another vector to the vector.
+  def +(other : Vector2)
+    # Vector2.new(@v.x + other.x, @v.y + other.y)
+    Vector2.new(Raymath.vector2_add(self, other))
+  end
+
+  # Adds a value to the vector's components.
+  def +(value : Number)
+    # Vector2.new(@v.x + value, @v.y + value)
+    Vector2.new(Raymath.vector2_add_value(self, value))
+  end
+
+  # Negates the vector.
   def -
-    Raylib::Vector2.new(-@x, -@y)
+    Vector2.new(Raymath.vector2_negate(self))
   end
 
-  # Performs component value subtraction.
-  def -(value : Float64)
-    Raylib::Vector2.new(@x - value, @y - value)
+  # Subtracts another vector from the vector.
+  def -(other : Vector2)
+    Vector2.new(Raymath.vector2_subtract(self, other))
   end
 
-  # Performs component vector subtraction.
-  def -(other : Raylib::Vector2)
-    Raylib::Vector2.new(@x - other.x, @y - other.y)
+  # Subtracts a value from the vector components.
+  def -(value : Number)
+    Vector2.new(Raymath.vector2_subtract_value(self, value))
   end
 
-  # Performs component multiplication (for dot product see `#dot`).
-  def *(other : Raylib::Vector2)
-    Raylib::Vector2.new(@x * other.x, @y * other.y)
+  # Multiplies a vector by a factor vector. See also `#dot` and `#cross` products.
+  def *(other : Vector2)
+    # Vector2.new(@v.x * other.x, @v.y * other.y)
+    Vector2.new(Raymath.vector2_multiply(self, other))
   end
 
-  # Performs factor multiplication.
-  def *(factor : Float64)
-    Raylib::Vector2.new(@x * factor, @y * factor)
+  # Multiplies a vector by a factor.
+  def *(factor : Number)
+    # Vector2.new(@v.x * factor, @v.y * factor)
+    Vector2.new(Raymath.vector2_scale(self, factor))
   end
 
-  # Performs component division.
-  def /(other : Raylib::Vector2)
-    Vector2.new(@x / other.x, @y / other.y)
+  # Divides a vector by another vector.
+  def /(other : Vector)
+    Vector2.new(Raymath.vector2_divide(self, other))
   end
 
-  # Performs value division.
-  def /(value : Float64)
-    # Multiply by the inverse => only do 1 division instead of 3
-    self * (1.0 / value)
+  # Divides a vector by a factor.
+  def /(factor : Number)
+    # Vector2.new(@v.x * factor, @v.y * factor)
+    Vector2.new(Raymath.vector2_scale(self, 1/factor))
   end
 
-  # Returns dot product of two vectors.
-  def dot(other : Raylib::Vector2)
-    @x * other.x + @y * other.y
+  # Returns the length of a vector.
+  def length
+    Raymath.vector2_length(@v)
   end
 
-  # Alias for `#dot` product.
-  def **(other : Raylib::Vector2)
+  # :ditto:
+  def magnitude
+    length
+  end
+
+  # Returns the square of the length of a vector.
+  def length_sqr
+    Raymath.vector2_length_sqr(@v)
+  end
+
+  # :ditto:
+  def magnitude_sqr
+    length_sqr
+  end
+
+  # Returns a vector scaled by a factor.
+  def self.scale(v : Vector2, factor : Number)
+    Vector2.new(Raymath.vector2_scale(v, factor))
+  end
+
+  # Returns the vector scaled by a factor.
+  def scale(factor : Number)
+    Vector2.scale(self, factor)
+  end
+
+  # Scales the vector by a factor.
+  def scale!(factor : Number)
+    @v = scale(factor)
+    self
+  end
+
+  # Returns the dot product of two vectors.
+  def self.dot(v1 : Vector2, v2 : Vector2)
+    Raymath.vector2_dot_product(v1, v2)
+  end
+
+  # Returns the dot product with another vector.
+  def dot(other : Vector2)
+    Vector2.dot(self, other)
+  end
+
+  # :ditto:
+  def **(other : Vector2)
     dot(other)
   end
 
-  # Returns cross product of two vectors.
-  def cross(other : Raylib::Vector2)
-    Raylib::Vector2.new(@x*other.y - @y*other.x, @y*other.x - @x*other.y)
+  # Returns the cross product of two vectors.
+  def self.cross(v1 : Vector2, v2 : Vector2)
+    Vector2.new(v1.x * v2.y - v1.y * v2.x, v1.y * v2.x - v1.x * v2.y)
   end
 
-  # Alias for `#cross` product.
-  def %(other : Raylib::Vector2)
+  # Returns the cross product with another vector.
+  def cross(other : Vector2)
+    Vector2.cross(self, other)
+  end
+
+  # :ditto:
+  def %(other : Vector2)
     cross(other)
   end
 
-  # Returns magnitude.
-  def magnitude
-    Math.sqrt(@x ** 2 + @y ** 2)
+  # Returns the distance between two vectors.
+  def self.distance_between(v1 : Vector2, v2 : Vector2)
+    Raymath.vector2_distance(v1, v2)
   end
 
-  # Alias for `#magnitude`.
-  def length
-    magnitude
+  # Returns the distance to another vector.
+  def distance_to(other : Vector2)
+    Vector2.distance_between(self, other)
   end
 
-  # Returns angle between two vectors.
-  def angle(other : Raylib::Vector2)
-    self ** other / (magnitude * other.magnitude)
+  # Returns the angle between two vectors.
+  def self.angle_between(v1 : Vector2, v2 : Vector2)
+    Raymath.vector2_angle(v1, v2)
   end
 
-  # Returns direction of a vector.
+  # Returns the angle to another vector.
+  def angle_to(other : Vector2)
+    Vector2.angle_between(self, other)
+  end
+
+  # Returns the direction of the vector.
   def angle
-    Math.atan2(@y, @x)
+    Math.atan2(@v.y, @v.x)
   end
 
   # :ditto:
@@ -124,9 +247,173 @@ struct Raylib::Vector2
     angle
   end
 
-  # Clones this vector and passes it into a block if given.
+  # Returns a vector rotated about an angle.
+  def self.rotate(v : Vector2, angle : Number)
+    Vector2.new(Raylib.vector2_rotate(v, angle))
+  end
+
+  # Returns the vector rotated about an angle.
+  def rotate(angle : Number)
+    Vector2.rotate(self, angle)
+  end
+
+  # Rotates the vector about an angle.
+  def rotate!(angle : Number)
+    @v = rotate(angle).to_unsafe
+    self
+  end
+
+  # Returns a vector reflected relative to the normal.
+  def self.reflect(v : Vector2, normal : Vector2)
+    Vector2.new(Raymath.vector2_reflect(v, normal))
+  end
+
+  # Returns the vector reflected relative to the normal.
+  def reflect(normal : Vector2)
+    Vector2.reflect(self, normal)
+  end
+
+  # Reflects the vector relative to the normal.
+  def reflect!(normal : Vector2)
+    @v = reflect(normal).to_unsafe
+    self
+  end
+
+  # Returns a vector reflected vertically.
+  def self.reflect_from_vertical(v : Vector2)
+    Vector2.reflect(v, LEFT)
+  end
+
+  # Returns the vector reflected vertically.
+  def reflect_from_vertical
+    Vector2.reflect_from_vertical(self)
+  end
+
+  # Reflects the vector vertically.
+  def reflect_from_vertical!
+    @v = self.reflect_from_vertical.to_unsafe
+    self
+  end
+
+  # Returns a vector reflected horizontally.
+  def self.reflect_from_horizonal(v : Vector2)
+    Vector2.reflect(v, DOWN)
+  end
+
+  # Returns the vector reflected horizontally.
+  def reflect_from_horizonal
+    Vector2.reflect_from_horizonal(self)
+  end
+
+  # Reflects the vector horizontally.
+  def reflect_from_horizonal!
+    @v = self.reflect_from_horizonal.to_unsafe
+    self
+  end
+
+  # Returns a normalized vector.
+  def self.normalize(v : Vector2)
+    Vector2.new(Raymath.vector2_normalize(v))
+  end
+
+  # Returns the normalized vector.
+  def normalize
+    Vector2.normalize(self)
+  end
+
+  # Normalizes the vector.
+  def normalize!
+    @v = normalize.to_unsafe
+    self
+  end
+
+  # Returns whether the vector is normalized (has a length of 1.0).
+  def normalized?
+    self.length == 1
+  end
+
+  #   # Finds normal axis between two vectors
+  #   def find_normal_axis(other : Vector2)
+  #     (self % other).normalize
+  #   end
+
+  # Returns the linear interpolation between two vectors at a certain amount.
+  def self.lerp(v1 : Vector2, v2 : Vector2, amount : Number)
+    Vector2.new(Raymath.vector2_lerp(v1, v2, amount))
+  end
+
+  # Returns the linear interpolation to another vector at a certain amount.
+  def lerp(other : Vector2, amount : Number)
+    Vector2.lerp(self, other, amount)
+  end
+
+  # Linearly interpolates to another vector at a certain amount.
+  def lerp!(other : Vector2, amount : Number)
+    @v = lerp(other, amount).to_unsafe
+    self
+  end
+
+  # Moves a vector towards another vector by a maximum distance.
+  def self.move_towards(v1 : Vector2, v2 : Vector2, maximum_distance : Number)
+    Vector2.new(Raymath.vector2_move_towards(v1, v2, maximum_distance))
+  end
+
+  # Moves the vector towards another vector by a maximum distance.
+  def move_towards(v : Vector2, maximum_distance : Number)
+    Vector2.move_towards(self, v, maximum_distance)
+  end
+
+  # Moves towards another vector by a maximum distance.
+  def move_towards!(v : Vector2, maximum_distance : Number)
+    @v = move_towards(v, maximum_distance).to_unsafe
+    self
+  end
+
+  # Clamps a vector to min/max x and y values.
+  def self.clamp(v : Vector2, min_x : Number, max_x : Number, min_y : Number, max_y : Number)
+    Vector2.new(v.x.clamp(min_x, max_x), v.y.clamp(min_y, max_y))
+  end
+
+  # Clamps the vector to min/max x and y values.
+  def clamp(min_x : Number, max_x : Number, min_y : Number, max_y : Number)
+    Vector2.clamp(self, min_x, max_x, min_y, max_y)
+  end
+
+  # Clamps min/max x and y values.
+  def clamp!(min_x : Number, max_x : Number, min_y : Number, max_y : Number)
+    @v = clamp(min_x, max_x, min_y, max_y).to_unsafe
+    self
+  end
+
+  # Clamps a vector to min/max x and y ranges.
+  def self.clamp(v : Vector2, x_range : Range, y_range : Range)
+    Vector2.new(v.x.clamp(x_range), v.y.clamp(y_range))
+  end
+
+  # Clamps the vector to min/max x and y ranges.
+  def clamp(x_range : Range, y_range : Range)
+    Vector2.clamp(self, x_range, y_range)
+  end
+
+  # Clamps min/max x and y ranges.
+  def clamp!(x_range : Range, y_range : Range)
+    @v = clamp(x_range, y_range).to_unsafe
+    self
+  end
+
+  # Returns whether two vectors are equal.
+  def ==(other : Vector2)
+    @x == other.x && @y == other.y
+  end
+
+  # Returns whether two vectors are not equal.
+  def !=(other : Vector2)
+    @x != other.x || @y != other.y
+  end
+
+  # Clones the vector and passes it into a block if given.
   def clone
-    Vector2.new(@x, @y)
+    Vector2.new(@v)
   end
 
   # :ditto:
@@ -136,80 +423,56 @@ struct Raylib::Vector2
     c
   end
 
-  # Normalizes current vector.
-  def normalize!
-    m = magnitude
-    unless m == 0
-      inverse = 1.0 / m
-      @x *= inverse
-      @y *= inverse
-    end
-    self
-  end
-
-  # Non-aggressive version of `#normalize!`.
-  def normalize
-    clone.normalize!
-  end
-
-  # Finds normal axis between two vectors
-  def find_normal_axis(other : Raylib::Vector2)
-    (self % other).normalize
-  end
-
-  # Finds distance between two vectors
-  def distance(other : Raylib::Vector2)
-    (self - other).magnitude
-  end
-
-  # Returns whether two vectors are equal.
-  def ==(other : Raylib::Vector2)
-    @x == other.x && @y == other.y
-  end
-
-  # Returns whether two vectors are not equal.
-  def !=(other : Vector2)
-    @x != other.x || @y != other.y
-  end
-
-  # Formats vector to a `String`.
+  # Returns a string representation of the vector.
   def to_s(io : IO)
-    io << "(" << @x << ", " << @y << ")"
+    io << @v
   end
 
-  # Rotates a vector by *angle* (in radians).
-  def rotate(angle : Float64)
-    Raylib::Vector2.new(@x * Math.cos(angle) - @y * Math.sin(angle), @x * Math.sin(angle) + @y * Math.cos(angle))
+  # Returns the vector in a C-compatible format.
+  #
+  # This allows for transparent interoperability with the Raylib library.
+  def to_unsafe
+    @v
   end
 
-  # Rotates a vector by *angle* (in degrees).
-  def rotate_degrees(angle : Float64)
-    rotate(angle.radians)
+  # Returns the vector's values as a `Hash`.
+  def to_hash
+    {
+      :x => @v.x,
+      :y => @v.y,
+    }
   end
 
-  def to_rect
-    Raylib::Rectangle.new x: 0, y: 0, width: @x, height: @y
+  # Returns the vector's values as a `Tuple`.
+  def to_tuple
+    {
+      @v.x,
+      @v.y,
+    }
   end
 
-  def to_rect(size : Raylib::Vector2)
-    Raylib::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
+  # :ditto:
+  def values
+    to_tuple
   end
+
+  # def to_rect
+  #   Raylib::Rectangle.new x: 0, y: 0, width: @x, height: @y
+  # end
+  #
+  # def to_rect(size : Raylib::Vector2)
+  #   Raylib::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
+  # end
+
+  forward_missing_to(@v)
 end
 
-# A two-dimensional vector.
-alias Vector2 = Raylib::Vector2
-
-# Creates a `Raylib::Vector2` from another `Raylib::Vector2`.
-def vec(v : Raylib::Vector2) : Vector2
-  Raylib::Vector2.new(v.x, v.y)
+# Creates a `Vector2` from a `Raylib::Vector2`.
+def vec(v : Raylib::Vector2)
+  Vector2.new(v)
 end
 
-# Creates a `Raylib::Vector2`.
-def vec(x : Number, y : Number) : Vector2
-  Raylib::Vector2.new(x, y)
-end
-
-# Creates a `Raylib::Vector2`.
-def vec : Vector2
-  Raylib::Vector2.new
+# Creates a `Vector2`.
+def vec(x : Number = 0, y : Number = 0)
+  Vector2.new(x, y)
 end
