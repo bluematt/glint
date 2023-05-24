@@ -8,9 +8,9 @@ module Glint
   alias R = Raylib
 end
 
-require "./number.cr"
-require "./vector2.cr"
-require "./color.cr"
+require "./glint/number.cr"
+require "./glint/vector2.cr"
+require "./glint/color.cr"
 
 require "./glint/cursor.cr"
 require "./glint/draw_position.cr"
