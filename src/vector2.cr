@@ -456,12 +456,19 @@ struct Vector2
     to_tuple
   end
 
+  # # Returns a rectangle with the size of the vector.
   # def to_rect
   #   Raylib::Rectangle.new x: 0, y: 0, width: @x, height: @y
   # end
   #
-  # def to_rect(size : Raylib::Vector2)
+  # # Returns a rectangle at the vector with a size.
+  # def to_rect(size : Vector2)
   #   Raylib::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
+  # end
+  # 
+  # # :ditto:
+  # def to_rect(width : Number, height: Number)
+  #   Raylib::Rectangle.new x: @x, y: @y, width: width, height: height
   # end
 
   forward_missing_to(@v)
