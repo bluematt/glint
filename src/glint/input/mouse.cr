@@ -38,7 +38,7 @@ module Glint
         Vector2.new(R.get_mouse_x, R.get_mouse_y)
       end
 
-      {% for action in ["pressed", "down", "released", "up"] %}
+      {% for action in STATES %}
         # Returns whether `mouse_button` is in the {{action.id}} state.
         def self.{{action.id}}?(mouse_button : Button) : Bool
           mouse_button.{{action.id}}?
