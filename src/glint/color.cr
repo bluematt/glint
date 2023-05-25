@@ -37,6 +37,11 @@ struct Color
     @c = Color.new(Raylib.get_color(value)).to_unsafe
   end
 
+  def initialize(values : Tuple(Int32, Int32, Int32) | Tuple(Int32, Int32, Int32, Int32))
+    raise ArgumentError.new("Invalid color values #{values}") unless values.size.in? [3, 4]
+    @c = Color.new(*values).to_unsafe
+  end
+
   # struct RGB
   #   struct Hex; end
   # end
@@ -123,8 +128,11 @@ struct Color
   end
 
   # Sets the red component.
-  def r=(value : UInt8)
+  #
+  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  def r=(value : Number)
     @c.r = value
+    @c
   end
 
   # Returns the green component.
@@ -133,8 +141,11 @@ struct Color
   end
 
   # Sets the green component.
-  def g=(value : UInt8)
+  #
+  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  def g=(value : Number)
     @c.g = value
+    @c
   end
 
   # Returns the blue component.
@@ -143,8 +154,11 @@ struct Color
   end
 
   # Sets the blue component.
-  def b=(value : UInt8)
+  #
+  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  def b=(value : Number)
     @c.b = value
+    @c
   end
 
   # Returns the alpha component.
@@ -153,8 +167,11 @@ struct Color
   end
 
   # Sets the alpha component.
-  def a=(value : UInt8)
+  #
+  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  def a=(value : Number)
     @c.a = value
+    @c
   end
 
   # Picks a random `Color` from the predefined Raylib colors.
@@ -179,7 +196,7 @@ struct Color
 
   # Sets the alpha value to 0.
   def transparent!
-    @a = 0
+    @c.a = 0
     self
   end
 
@@ -271,6 +288,12 @@ struct Color
     to_tuple
   end
 
+  # Takes a block and modulates (changes) the color in the way defined by the block.
+  def modulate(&block)
+    @c = yield self
+    self
+  end
+
   def to_hex; end
 
   forward_missing_to @c
@@ -294,4 +317,9 @@ end
 # Creates a `Color`.
 def color(r : Number, g : Number, b : Number, a : Number = Color::MAXIMUM_VALUE)
   Color.new(r, g, b, a)
+end
+
+# Creates a `Color` from a tuple.
+def color(values : Tuple(Int32, Int32, Int32) | Tuple(Int32, Int32, Int32, Int32))
+  Color.new(values)
 end
