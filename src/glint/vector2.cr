@@ -428,7 +428,7 @@ struct Vector2
     io << @v
   end
 
-  # Returns the vector in a C-compatible format.
+  # Returns the vector in a C-compatible format, i.e. as `Raylib::Vector2`.
   #
   # This allows for transparent interoperability with the Raylib library.
   def to_unsafe
@@ -456,20 +456,20 @@ struct Vector2
     to_tuple
   end
 
-  # # Returns a rectangle with the size of the vector.
-  # def to_rect
-  #   Raylib::Rectangle.new x: 0, y: 0, width: @x, height: @y
-  # end
-  #
-  # # Returns a rectangle at the vector with a size.
-  # def to_rect(size : Vector2)
-  #   Raylib::Rectangle.new x: @x, y: @y, width: size.x, height: size.y
-  # end
-  # 
-  # # :ditto:
-  # def to_rect(width : Number, height: Number)
-  #   Raylib::Rectangle.new x: @x, y: @y, width: width, height: height
-  # end
+  # Returns a rectangle with the size of the vector.
+  def to_rect
+    Raylib::Rectangle.new x: 0, y: 0, width: x, height: y
+  end
+
+  # Returns a rectangle at the vector with a size.
+  def to_rect(size : Vector2)
+    Raylib::Rectangle.new x: x, y: y, width: size.x, height: size.y
+  end
+
+  # :ditto:
+  def to_rect(width : Number, height : Number)
+    Raylib::Rectangle.new x: x, y: y, width: width, height: height
+  end
 
   forward_missing_to(@v)
 end
