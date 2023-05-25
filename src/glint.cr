@@ -28,3 +28,5 @@ require "./glint/window.cr"
 require "./glint/audio/audio.cr"
 require "./glint/entity/entity.cr"
 require "./glint/input/input.cr"
+
+alias Position = Vector2
