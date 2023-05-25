@@ -289,6 +289,12 @@ struct Color
   end
 
   # Takes a block and modulates (changes) the color in the way defined by the block.
+  #
+  # Example:
+  # ```
+  # # This takes the predefined `BLACK` colour and makes it semitransparent.
+  # transparent_black = Color::BLACK.modulate { |c| c.a = 127 } # => {255, 255, 255, 127}
+  # ```
   def modulate(&block)
     @c = yield self
     self
