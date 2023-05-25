@@ -14,16 +14,27 @@ struct Color
     @c = Raylib::Color.new r: r, g: g, b: b, a: a
   end
 
-  # Creates a color from a (hex) number.
+  # Creates a colour from a 6- or 8-byte hex string (e.g. `#ffcc00` or `FFCC0080`).
   #
-  # It could actually be any valid Crystal number.
-  def initialize(hex : Number)
-    @c = Color.new(Raylib.get_color(hex))
+  # The string can optionally begin with `#` (e.g. when using CSS-style colours).
+  # If the alpha component is not specified, it assumes `FF` (255) for the alpha
+  # component.
+  def initialize(hex_color : String)
+    hex = hex_color.lstrip('#')
+    raise ArgumentError.new("Invalid hex color #{hex_color}") unless hex.size.in? [6, 8]
+    value = hex.to_i64(16)
+    value = (value << 8) | 0xFF if hex.size == 6
+    raise ArgumentError.new("Invalid hex color #{hex_color}") if value > 0xFFFFFFFF
+    @c = Color.new(value).to_unsafe
   end
 
-  # Creates a colour from a hex string.
-  def initialize(hex : String)
-    @c = Color.new(Raylib.get_color(hex.to_i(16)))
+  # Creates a color from a value.
+  #
+  # It could actually be any valid Crystal number, but it probably expects an 8-byte
+  # hex (`0xNNNNNNNN`) number.
+  def initialize(value : Number)
+    raise ArgumentError.new("Invalid color value #{value}") if value > 0xFFFFFFFF
+    @c = Color.new(Raylib.get_color(value)).to_unsafe
   end
 
   # struct RGB
@@ -223,9 +234,9 @@ struct Color
     self
   end
 
-  # Returns a string representation of the vector.
+  # Returns a string representation of the color.
   def to_s(io : IO)
-    io << @v
+    io << @c
   end
 
   # Returns the color in a C-compatible format, i.e. as `Raylib::Color`.
@@ -273,6 +284,11 @@ end
 # Creates a `Color` from a hex string.
 def color(hex : String)
   Color.new(hex)
+end
+
+# Creates a `Color` from a value.
+def color(value : Number)
+  Color.new(value)
 end
 
 # Creates a `Color`.
