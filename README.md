@@ -2,13 +2,20 @@
 
 A simple 2D game framework for [Crystal](https://crystal-lang.org/) using [Raylib](https://www.raylib.com/).
 
-Glint was inspired by a number of game engines and libraries, including but not limited to [Löve2D](https://love2d.org/),  [Godot Engine](https://godotengine.org/), [DragonRuby GTK](https://dragonruby.org/toolkit/game), [microStudio](https://microstudio.dev/) and [Solar2D](https://solar2d.com/).
+Glint was inspired by a number of game engines and libraries, including but not limited
+to [Löve2D](https://love2d.org/),  [Godot Engine](https://godotengine.org/), [DragonRuby GTK](https://dragonruby.org/toolkit/game), [microStudio](https://microstudio.dev/)
+and [Solar2D](https://solar2d.com/).
 
-Glint doesn't try to replicate them, but it does try to take from them core ideas that make games programming actually fun.   It aims to make the necessary parts easy, and make the awesome parts possible.
+Glint doesn't try to replicate them, but it does try to take from them core ideas that make games programming actually
+fun. It aims to make the necessary parts easy, and make the awesome parts possible.
+
+> **Note:** Glint is a work in progress. It is not yet feature complete (or even feature-ful) in any meaningful sense.
+> Optimisation is a long, long way away, and there is almost no error or bounds checking, other than what Crystal
+> provides. **Use at your own risk**.
 
 ## Prerequisites
 
-Raylib should already be installed.  If not, you can install it with [Homebrew](https://brew.sh/).
+Raylib should already be installed. If not, you can install it with [Homebrew](https://brew.sh/).
 
 ```bash
 $ brew install raylib
