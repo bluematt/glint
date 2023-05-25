@@ -97,7 +97,7 @@ module Glint
     # end
     # ```
     def draw
-      label = Label.new "Glint v.#{Glint::VERSION}!", @window.center, color: Color::WHITE
+      label = Label.new "Glint v.#{Glint::VERSION} | Raylib v.#{Raylib::VERSION}", @window.center, color: Color::WHITE
       label.pivot = Origin::Center
       label.draw
     end
