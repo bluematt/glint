@@ -2,10 +2,10 @@ module Glint
   # A notional rectangle in 2d space.
   class Rect
     # The position of the `Rect`.
-    property position : Vector2
+    property position : Position
 
     # The size of the `Rect`.
-    property size : Vector2
+    property size : Dimension
 
     def initialize(@position, @size); end
 
