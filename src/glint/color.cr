@@ -276,6 +276,6 @@ def color(hex : String)
 end
 
 # Creates a `Color`.
-def color(r : UInt8, g : UInt8, b : UInt8, a : UInt8 = Color::MAXIMUM_VALUE)
+def color(r : Number, g : Number, b : Number, a : Number = Color::MAXIMUM_VALUE)
   Color.new(r, g, b, a)
 end
