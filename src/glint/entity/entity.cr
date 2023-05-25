@@ -180,7 +180,6 @@ module Glint
   end
 end
 
-require "./game_object.cr"
 require "./scene.cr"
 require "./sprite.cr"
 

@@ -1,6 +1,6 @@
 module Glint
   module Shape
-    # A `Shape` is a generic shape `GameObject` that can be drawn.
+    # A `Shape` is a generic shape entity that can be drawn.
     abstract class Shape < Glint::Entity::Entity
       # The shape's foreground (outline) color.
       property foreground_color : Color?
