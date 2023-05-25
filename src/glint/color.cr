@@ -10,7 +10,7 @@ struct Color
   def initialize(@c : Raylib::Color); end
 
   # Creates a color from an RGB(A) tuple.
-  def initialize(r : UInt8, g : UInt8, b : UInt8, a : UInt8 = 255)
+  def initialize(r : Number, g : Number, b : Number, a : Number = 255)
     @c = Raylib::Color.new r: r, g: g, b: b, a: a
   end
 
@@ -103,6 +103,9 @@ struct Color
   # WEB_SAFE      = {} of Symbol => Color
   # WEB_SAFEST    = {} of Symbol => Color
 
+  COLOR_RANGE   = 0..255
+  MAXIMUM_VALUE = 255
+
   # Returns the red component.
   def r
     @c.r
@@ -149,18 +152,18 @@ struct Color
   end
 
   # Creates a random `Color` from the predefined named colors.
-  def self.random(transparency : UInt8 = 255)
-    Color.new(0..255.sample, 0..255.sample, 0..255.sample, transparency)
+  def self.random(transparency : Number = MAXIMUM_VALUE)
+    Color.new(COLOR_RANGE.sample, COLOR_RANGE.sample, COLOR_RANGE.sample, transparency)
   end
 
   # Creates a random colour with the specified RGB(A) `Range`s.
-  def self.random(r_range : Range, g_range : Range, b_range : Range, a_range : Range = 0..255)
+  def self.random(r_range : Range, g_range : Range, b_range : Range, a_range : Range = COLOR_RANGE)
     Color.new(r_range.sample.to_u8, g_range.sample.to_u8, b_range.sample.to_u8, a_range.sample.to_u8)
   end
 
   # Creates a grey with the specific value.
-  def self.grey(value : UInt8)
-    Color.new(value, value, value, 255)
+  def self.grey(value : Number)
+    Color.new(value, value, value, MAXIMUM_VALUE)
   end
 
   # Sets the alpha value to 0.
@@ -201,7 +204,7 @@ struct Color
 
   # :ditto:
   def translucent?
-    @a < 255
+    @a < MAXIMUM_VALUE
   end
 
   # Mixes a color with another color to make a new color.
@@ -220,19 +223,19 @@ struct Color
     self
   end
 
-  def to_tuple
-    {
-      @r,
-      @g,
-      @b,
-      @a,
-    }
+  # Returns a string representation of the vector.
+  def to_s(io : IO)
+    io << @v
   end
 
-  def values
-    to_tuple
+  # Returns the color in a C-compatible format, i.e. as `Raylib::Color`.
+  #
+  # This allows for transparent interoperability with the Raylib library.
+  def to_unsafe
+    @c
   end
 
+  # Returns the color's values as a `Hash`.
   def to_hash
     {
       :r => @r,
@@ -242,22 +245,37 @@ struct Color
     }
   end
 
+  # Returns the color's values as a `Tuple`.
+  def to_tuple
+    {
+      @r,
+      @g,
+      @b,
+      @a,
+    }
+  end
+
+  # :ditto:
+  def values
+    to_tuple
+  end
+
   def to_hex; end
 
   forward_missing_to @c
 end
 
 # Creates a `Color` from a `Raylib::Color`.
-def col(c : Raylib::Color)
+def color(c : Raylib::Color)
   Color.new(c)
 end
 
 # Creates a `Color` from a hex string.
-def col(hex : String)
+def color(hex : String)
   Color.new(hex)
 end
 
 # Creates a `Color`.
-def col(r : UInt8, g : UInt8, b : UInt8, a : UInt8 = 255)
+def color(r : UInt8, g : UInt8, b : UInt8, a : UInt8 = Color::MAXIMUM_VALUE)
   Color.new(r, g, b, a)
 end
