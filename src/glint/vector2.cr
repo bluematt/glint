@@ -456,14 +456,19 @@ struct Vector2
     to_tuple
   end
 
-  # Returns a rectangle with the size of the vector.
+  # Returns a `Rect` with the size of the `Vector2`.
   def to_rect
-    Raylib::Rectangle.new x: 0, y: 0, width: x, height: y
+    Rect.new(0, 0, self)
   end
 
-  # Returns a rectangle at the vector with a size.
-  def to_rect(size : Vector2)
-    Raylib::Rectangle.new x: x, y: y, width: size.x, height: size.y
+  # Returns a `Rect` at `Vector2` with a specific *size*.
+  def to_rect(size : Dimension)
+    Rect.new(self, size)
+  end
+
+  # Returns a `Rect` at `Vector2` with a specific *width* and *height*.
+  def to_rect(width : Number, height : Number)
+    Rect.new(self, width, height)
   end
 
   # :ditto:
@@ -471,7 +476,28 @@ struct Vector2
     Raylib::Rectangle.new x: x, y: y, width: width, height: height
   end
 
+  # Returns the x component as a width.
+  def width
+    x
+  end
+
+  # Returns the y component as a height.
+  def height
+    y
+  end
+
+  # Returns whether the `Vector2`, when considered as a dimension, would be invalid.
+  def is_invalid_dimension?
+    self.width < 0 || self.height < 0
+  end
+
   forward_missing_to(@v)
+
+  # Takes a block and adjusts the `Vector2` in the way(s) defined by the block.
+  def adjust(&block)
+    @v = yield self
+    self
+  end
 end
 
 # Creates a `Vector2` from a `Raylib::Vector2`.
