@@ -10,7 +10,7 @@ module Glint
       end
 
       # Draw a line.
-      def self.draw(start_position : Position, end_position : Position, width : Float32 = 1, color : Color = Color::BLACK)
+      def self.draw(start_position : Position, end_position : Position, width : Float32 = 1, color : Color? = Color::BLACK)
         raise ArgumentError.new("Invalid width #{width}") if width < 0
         return if width <= 0 # Don't draw line if no width.
         return if color.nil? # Don't draw line if no color.
