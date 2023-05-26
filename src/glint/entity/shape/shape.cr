@@ -1,8 +1,12 @@
 module Glint
   module Shape
-    DEFAULT_FILL_COLOR    = Color::RED
+    # The default fill color.
+    DEFAULT_FILL_COLOR = Color::RED
+
+    # The default outline color.
     DEFAULT_OUTLINE_COLOR = Color::GREEN
 
+    # The default outline position.
     DEFAULT_OUTLINE_POSITION = OutlinePosition::Centered
 
     # Where a `Shape`'s outline is positioned relative to the fill area.
@@ -75,4 +79,5 @@ require "./polygon.cr"
 require "./rectangle.cr"
 require "./square.cr"
 
+# Convenience alias for `Glint::Shape::OutlinePosition`.
 alias OutlinePosition = Glint::Shape::OutlinePosition
