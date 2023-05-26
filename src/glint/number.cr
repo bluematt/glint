@@ -11,6 +11,17 @@ struct Number
     return self * Raylib::DEG2RAD
   end
 
+  # Returns a number annotated as pixels.
+  #
+  # ```
+  # Example:
+  # self.position.x += 24.pixels # Shift the x position of the entity by 24 pixels.
+  # ```
+  @[AlwaysInline]
+  def pixels
+    self
+  end
+
   # Returns a number as an angle, annotated as degrees.
   @[AlwaysInline]
   def degrees
