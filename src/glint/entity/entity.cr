@@ -8,7 +8,7 @@ module Glint
       DEFAULT_POSITION = Position.zero
 
       # The entity's default rotation, in degrees.
-      DEFAULT_ROTATION = 0.degrees
+      DEFAULT_ROTATION = 0.0.degrees
 
       # The entity's default pivot.
       DEFAULT_ORIGIN = Origin::TopLeft
@@ -23,7 +23,7 @@ module Glint
       @position : Position = DEFAULT_POSITION
 
       # The entity's rotation.
-      @rotation = DEFAULT_ROTATION
+      @rotation : Float64 = DEFAULT_ROTATION
 
       # The entity's point of transformation.
       property pivot : Origin = DEFAULT_ORIGIN
