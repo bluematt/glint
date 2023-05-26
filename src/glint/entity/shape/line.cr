@@ -1,23 +1,26 @@
 module Glint
   module Shape
     class Line < Shape
-      @end_position : Position = Vector2.new
+      # The `Line`'s end position.
+      @end_position : Position = Position.new
 
       # Draws the line.
       def draw
-        if outline_color = @outline_color
-          Line.draw(@position, @end_position, @outline, outline_color)
-        end
+        Line.draw(@position, @end_position, @outline, @outline_color)
       end
 
       # Draw a line.
-      def self.draw(start_position : Vector2, end_position : Vector2, outline : Float32 = 1, color : Color = Color::BLACK)
-        Raylib.draw_line_ex(start_position, end_position, outline, color)
+      def self.draw(start_position : Vector2, end_position : Vector2, width : Float32 = 1, color : Color = Color::BLACK)
+        raise ArgumentError.new("Invalid width #{width}") if width < 0
+        return if width <= 0 # Don't draw line if no width.
+        return if color.nil? # Don't draw line if no color.
+
+        Raylib.draw_line_ex(start_position, end_position, width, color)
       end
 
       # :ditto:
-      def self.draw(x1 : Float32, y1 : Float32, x2 : Float32, y2 : Float32, outline : Float32 = 1, color : Color = Color::BLACK)
-        self.draw(Vector2.new(x1, y1), Vector2.new(x2, y2), outline, color)
+      def self.draw(x1 : Float32, y1 : Float32, x2 : Float32, y2 : Float32, width : Float32 = 1, color : Color = Color::BLACK)
+        Line.draw(Position.new(x1, y1), Position.new(x2, y2), width, color)
       end
 
       # Returns the (start) position.
@@ -42,6 +45,34 @@ module Glint
       # Sets the end position.
       def end_position=(end_position : Vector2)
         @end_position = end_position
+      end
+
+      # Returns the color.
+      #
+      # Semantic alias for `Glint::Shape::Shape#outline_color`.
+      def color
+        @outline_color
+      end
+
+      # Sets the color.
+      #
+      # Semantic alias for `Glint::Shape::Shape#outline_color=`.
+      def color=(color : Color)
+        @outline_color = color
+      end
+
+      # Returns the width.
+      #
+      # Semantic alias for `Glint::Shape::Shape#outline`.
+      def width
+        @outline
+      end
+
+      # Sets the width.
+      #
+      # Semantic alias for `Glint::Shape::Shape#outline=`.
+      def width=(width : Float32)
+        @outline = width
       end
     end
   end
