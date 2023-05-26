@@ -10,7 +10,7 @@ module Glint
       end
 
       # Draw a line.
-      def self.draw(start_position : Vector2, end_position : Vector2, width : Float32 = 1, color : Color = Color::BLACK)
+      def self.draw(start_position : Position, end_position : Position, width : Float32 = 1, color : Color = Color::BLACK)
         raise ArgumentError.new("Invalid width #{width}") if width < 0
         return if width <= 0 # Don't draw line if no width.
         return if color.nil? # Don't draw line if no color.
@@ -33,7 +33,7 @@ module Glint
       # Sets the (start) position.
       #
       # Semantic alias for `Glint::Entity::Entity#position=`.
-      def start_position=(start_position : Vector2)
+      def start_position=(start_position : Position)
         @position = start_position
       end
 
@@ -43,7 +43,7 @@ module Glint
       end
 
       # Sets the end position.
-      def end_position=(end_position : Vector2)
+      def end_position=(end_position : Position)
         @end_position = end_position
       end
 
