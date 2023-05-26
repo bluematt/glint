@@ -39,7 +39,7 @@ module Glint
     # Returns the position of the cursor on the screen.
     #
     # Alias for `Mouse.position`.
-    def self.position : Vector2
+    def self.position : Position
       Mouse.position
     end
 
