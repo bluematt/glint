@@ -129,7 +129,7 @@ struct Color
 
   # Sets the red component.
   #
-  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  # Returns the `Raylib::Color` so it can be changed with `#adjust`.
   def r=(value : Number)
     @c.r = value
     @c
@@ -142,7 +142,7 @@ struct Color
 
   # Sets the green component.
   #
-  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  # Returns the `Raylib::Color` so it can be changed with `#adjust`.
   def g=(value : Number)
     @c.g = value
     @c
@@ -155,7 +155,7 @@ struct Color
 
   # Sets the blue component.
   #
-  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  # Returns the `Raylib::Color` so it can be changed with `#adjust`.
   def b=(value : Number)
     @c.b = value
     @c
@@ -168,7 +168,7 @@ struct Color
 
   # Sets the alpha component.
   #
-  # Returns the `Raylib::Color` so it can be changed with `#modulate`.
+  # Returns the `Raylib::Color` so it can be changed with `#adjust`.
   def a=(value : Number)
     @c.a = value
     @c
@@ -288,14 +288,14 @@ struct Color
     to_tuple
   end
 
-  # Takes a block and modulates (changes) the color in the way defined by the block.
+  # Takes a block and adjusts the color in the way(s) defined by the block.
   #
-  # Example:
   # ```
+  # # Example:
   # # This takes the predefined `BLACK` colour and makes it semitransparent.
-  # transparent_black = Color::BLACK.modulate { |c| c.a = 127 } # => {255, 255, 255, 127}
+  # transparent_black = Color::BLACK.adjust { |c| c.a = 127 } # => {255, 255, 255, 127}
   # ```
-  def modulate(&block)
+  def adjust(&block)
     @c = yield self
     self
   end
