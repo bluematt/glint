@@ -2,12 +2,12 @@ module Glint
   module Entity
     class Sprite < Entity
       # The sprite's texture.
-      @texture : R::Texture2D
+      @texture : Raylib::Texture2D
 
       # The sprite's tint.
       property tint : Color = Color::WHITE
 
-      def initialize(@texture : R::Texture2D)
+      def initialize(@texture : Raylib::Texture2D)
         @extents = Vector2.new(@texture.width, @texture.height)
       end
 
@@ -29,7 +29,7 @@ module Glint
 
       # Draws the texture at a specific position.
       def draw_at(position)
-        R.draw_texture_pro(@texture, @extents.to_rect, position.to_rect(@extents), @pivot.from(@extents), @rotation, @tint)
+        Raylib.draw_texture_pro(@texture, @extents.to_rect, position.to_rect(@extents), @pivot.from(@extents), @rotation, @tint)
       end
     end
   end

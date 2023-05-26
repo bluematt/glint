@@ -513,5 +513,25 @@ end
 # A `Position` is a `Vector2`.
 alias Position = Vector2
 
+# Creates a `Position` from x and y coordinates.
+def p(x, y)
+  Position.new(x, y)
+end
+
+# Creates a `Position` from a `Vector2`.
+def p(v : Vector2)
+  Position.new(v)
+end
+
 # A `Dimension` is a `Vector2`.
 alias Dimension = Vector2
+
+# Creates a `Dimension` from x and y coordinates.
+def size(x, y)
+  Dimension.new(x, y)
+end
+
+# Creates a `Dimension` from a `Vector2`.
+def size(v : Vector2)
+  Dimension.new(v)
+end

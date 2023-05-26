@@ -3,7 +3,7 @@ module Glint
   module Preload
     # Preload a texture.
     def self.texture(filename)
-      texture = R.load_texture(filename)
+      texture = Raylib.load_texture(filename)
       raise "Could not load texture #{filename}" unless texture
       texture
     end

@@ -13,7 +13,7 @@ module Glint
       property text : String
       property font_size : Int32 = DEFAULT_FONT_SIZE
       property color : Color = DEFAULT_COLOR
-      property font : R::Font
+      property font : Raylib::Font
       property spacing = DEFAULT_SPACING
 
       def initialize(@text = DEFAULT_TEXT, @position = DEFAULT_POSITION, @font_size = DEFAULT_FONT_SIZE, @color = DEFAULT_COLOR)
@@ -27,12 +27,12 @@ module Glint
       end
 
       # Draw the texture at a specific position.
-      def draw_at(position)
-        R.draw_text_pro(@font, @text, position, @pivot.from(get_extents), @rotation, @font_size, @spacing, @color)
+      def draw_at(position : Position)
+        Raylib.draw_text_pro(@font, @text, position, @pivot.from(get_extents), @rotation, @font_size, @spacing, @color)
       end
 
       def get_extents
-        Vector2.new(R.measure_text_ex(@font, @text, @font_size, @spacing))
+        Vector2.new(Raylib.measure_text_ex(@font, @text, @font_size, @spacing))
       end
 
       def self.draw(text = DEFAULT_TEXT, position = DEFAULT_POSITION, font_size = DEFAULT_FONT_SIZE, color = DEFAULT_COLOR)

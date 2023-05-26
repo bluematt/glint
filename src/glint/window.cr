@@ -5,22 +5,22 @@ module Glint
 
     # Create a new `Window`.
     def initialize(height : Number, width : Number, @title : String)
-      R.init_window(height, width, @title)
+      Raylib.init_window(height, width, @title)
     end
 
     # :ditto:
-    def initialize(size : Vector2, @title : String)
-      R.init_window(size.x, size.y, @title)
+    def initialize(size : Dimension, @title : String)
+      Raylib.init_window(size.x, size.y, @title)
     end
 
     # Returns the `Window`'s width.
     def width : Number
-      R.get_screen_width
+      Raylib.get_screen_width
     end
 
     # Returns the `Window`'s height.
     def height : Number
-      R.get_screen_height
+      Raylib.get_screen_height
     end
 
     # Returns the `Window`'s title.
@@ -31,128 +31,128 @@ module Glint
     # Sets the `Window`'s title.
     def title=(title : String)
       @title = title
-      R.set_window_title(@title)
+      Raylib.set_window_title(@title)
     end
 
     # Closes the `Window`.
     #
     # This also has the effect that it closes the `Game`.
     def close
-      R.close_window
+      Raylib.close_window
     end
 
     # Returns whether the `Window` should close.
     def close?
-      R.close_window?
+      Raylib.close_window?
     end
 
     # Returns the coordinate at the center of the `Window`.
-    def center : Vector2
+    def center : Position
       middle_center
     end
 
     # Returns the coordinate at the top left of the `Window`.
-    def top_left : Vector2
-      Vector2.new
+    def top_left : Position
+      Position.new
     end
 
     # Returns the coordinate at the top center of the `Window`.
-    def top_center : Vector2
-      Vector2.new(width/2, 0)
+    def top_center : Position
+      Position.new(width/2, 0)
     end
 
     # Returns the coordinate at the top righr of the `Window`.
-    def top_right : Vector2
-      Vector2.new(width, 0)
+    def top_right : Position
+      Position.new(width, 0)
     end
 
     # Returns the coordinate at the middle left of the `Window`.
-    def middle_left : Vector2
-      Vector2.new(0, height/2)
+    def middle_left : Position
+      Position.new(0, height/2)
     end
 
     # Returns the coordinate at the middle centre of the `Window`.
-    def middle_center : Vector2
-      Vector2.new(width/2, height/2)
+    def middle_center : Position
+      Position.new(width/2, height/2)
     end
 
     # Returns the coordinate at the middle right of the `Window`.
-    def middle_right : Vector2
-      Vector2.new(width, height/2)
+    def middle_right : Position
+      Position.new(width, height/2)
     end
 
     # Returns the coordinate at the bottom left of the `Window`.
-    def bottom_left : Vector2
-      Vector2.new(0, height)
+    def bottom_left : Position
+      Position.new(0, height)
     end
 
     # Returns the coordinate at the bottom center of the `Window`.
-    def bottom_center : Vector2
-      Vector2.new(width/2, height)
+    def bottom_center : Position
+      Position.new(width/2, height)
     end
 
     # Returns the coordinate at the bottom right of the `Window`.
-    def bottom_right : Vector2
-      Vector2.new(width, height)
+    def bottom_right : Position
+      Position.new(width, height)
     end
 
     # Sets whether the `Window` is resizable.
     def resizable=(resizable)
       if resizable
-        R.set_window_state(R::ConfigFlags::WindowResizable)
+        Raylib.set_window_state(Raylib::ConfigFlags::WindowResizable)
       else
-        R.clear_window_state(R::ConfigFlags::WindowResizable)
+        Raylib.clear_window_state(Raylib::ConfigFlags::WindowResizable)
       end
     end
 
     # Returns whether the `Window` is resizable.
     def resizable?
-      R.window_state? R::ConfigFlags::WindowResizable
+      Raylib.window_state? (Raylib::ConfigFlags::WindowResizable)
     end
 
     # Returns whether the `Window` is resized.
     def resized?
-      R.window_resized?
+      Raylib.window_resized?
     end
 
     # Returns whether the `Window` is focused.
     def focused?
-      R.window_focused?
+      Raylib.window_focused?
     end
 
     # Returns whether the `Window` is fullscreen.
     def fullscreen?
-      R.window_fullscreen?
+      Raylib.window_fullscreen?
     end
 
     # Returns whether the `Window` is maximized.
     def maximized?
-      R.window_maximized?
+      Raylib.window_maximized?
     end
 
     # Returns whether the `Window` is minimized.
     def minimized?
-      R.window_minimized?
+      Raylib.window_minimized?
     end
 
     # Returns whether the `Window` is hidden.
     def hidden?
-      R.window_hidden?
+      Raylib.window_hidden?
     end
 
     # Returns whether the `Window` is ready.
     def ready?
-      R.window_ready?
+      Raylib.window_ready?
     end
 
     # Toggles whether the `Window` is fullscreen.
     def toggle_fullscreen!
-      R.toggle_fullscreen
+      Raylib.toggle_fullscreen
     end
 
     # Restore the `Window`.
     def restore!
-      R.restore_window
+      Raylib.restore_window
     end
   end
 end

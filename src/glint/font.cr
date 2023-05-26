@@ -12,7 +12,7 @@ module Glint
 
     # Returns the default font.
     def self.default
-      R.get_font_default
+      Raylib.get_font_default
     end
 
     # Returns a new `Font` from the font resource.
