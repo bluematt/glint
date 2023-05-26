@@ -10,7 +10,7 @@ struct Color
   def initialize(@c : Raylib::Color); end
 
   # Creates a color from an RGB(A) tuple.
-  def initialize(r : Number, g : Number, b : Number, a : Number = 255)
+  def initialize(r : Number, g : Number, b : Number, a : Number = MAXIMUM_VALUE)
     @c = Raylib::Color.new r: r, g: g, b: b, a: a
   end
 
@@ -88,8 +88,8 @@ struct Color
 
   # Palette representing the two colours available in a one-bit palette.
   ONE_BIT = {
-    :black => Color.new(0, 0, 0),
-    :white => Color.new(255, 255, 255),
+    :black => Color::BLACK,
+    :white => Color::WHITE,
   }
 
   # Palette representing the sixteen colours available on the
@@ -119,8 +119,8 @@ struct Color
   # WEB_SAFE      = {} of Symbol => Color
   # WEB_SAFEST    = {} of Symbol => Color
 
-  COLOR_RANGE   = 0..255
   MAXIMUM_VALUE = 255
+  COLOR_RANGE   = 0..MAXIMUM_VALUE
 
   # Returns the red component.
   def r
