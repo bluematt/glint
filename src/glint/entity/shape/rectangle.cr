@@ -52,16 +52,15 @@ module Glint
         rect = Rect.new(position, size)
         case outline_position
         when .centered?
-          rect.position.shift(-outline/2)
-          rect.size.expand!(outline)
+          # rect.shift!(-outline/2)
+          # rect.expand!(outline)
         when .outside?
-          rect.position.shift(-outline)
-          rect.size.expand!(outline * 2)
+          # rect.shift!(-outline)
+          # rect.expand!(outline * 2)
         else
           # pass
         end
         Raylib.draw_rectangle_lines_ex(rect, outline, outline_color)
-        puts rect
       end
     end
   end

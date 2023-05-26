@@ -1,0 +1,18 @@
+name: rectangles
+version: 0.1.0
+
+authors:
+  - bluematt <307723+bluematt@users.noreply.github.com>
+
+crystal: 1.8.2
+
+license: MIT
+
+dependencies:
+  glint:
+    path: ../../
+
+targets:
+  example:
+    main: src/example.cr
+    
