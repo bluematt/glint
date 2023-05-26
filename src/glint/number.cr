@@ -1,11 +1,25 @@
 struct Number
-  # Convert a number (in radians) to degrees.
-  def degrees
-    return self * Glint::R::DEG2RAD
+  # Returns an angle (assumed in radians) converted to degrees.
+  @[AlwaysInline]
+  def to_degrees
+    return self * Raylib::RAD2DEG
   end
 
-  # Convert a number (in degrees) to radians.
+  # Returns an angle (assumed in degrees) converted to radians.
+  @[AlwaysInline]
+  def to_radians
+    return self * Raylib::DEG2RAD
+  end
+
+  # Returns a number as an angle, annotated as degrees.
+  @[AlwaysInline]
+  def degrees
+    self
+  end
+
+  # Returns a number as an angle, annotated as radians.
+  @[AlwaysInline]
   def radians
-    return self * Glint::R::RAD2DEG
+    self
   end
 end
