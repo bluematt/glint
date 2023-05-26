@@ -5,7 +5,7 @@ module Glint
       MINIMUM_SEGMENTS = 30
 
       DEGREES_START = 0.degrees
-      DEGREES_END = 360.degrees
+      DEGREES_END   = 360.degrees
 
       # The radius of the circle.
       @radius = 0
@@ -22,18 +22,17 @@ module Glint
 
       # Draw a circle.
       def self.draw(position : Vector2 = Vector2.new, radius : Number = 0, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
-        raise ArgumentError.new("radius <= 0") if radius <= 0 # Don't draw anything if no radius.
+        raise ArgumentError.new("Invalid radius #{radius}") if radius < 0
+        return if radius <= 0 # Don't draw anything if no radius.
 
-        if fill_color # Don't draw fill if no fill color.
-          Circle.fill(position, radius, fill_color)
-        end
+        # Draw fill only if there's an fill color.
+        Circle.fill(position, radius, fill_color) if fill_color
 
-        raise ArgumentError.new("outline < 0") if outline < 0
-        return if outline == 0 # Don't draw outline if no radius.
+        raise ArgumentError.new("Invalid outline #{outline}") if outline < 0
+        return if outline <= 0 # Don't draw outline if no outline.
 
-        if outline_color # Don't draw outline if no outline color.
-          Circle.outline(position, radius, outline, outline_color, outline_position)
-        end
+        # Draw outline only if there's an outline color.
+        Circle.outline(position, radius, outline, outline_color, outline_position) if outline_color
       end
 
       # Draw a disc (filled circle).
