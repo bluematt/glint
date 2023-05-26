@@ -1,4 +1,4 @@
-# simple_drawing
+# simple_shapes
 
 This is an example of Glint in action.
 

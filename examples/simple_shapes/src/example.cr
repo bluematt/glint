@@ -1,12 +1,12 @@
 require "glint"
 
-# Opens and window and displays a simple label saying "Hello, World!".
+# Opens and window and draws some simple shapes.
 class SimpleDrawingExample < Game
   # Set the game to be 800x600 and have an awesome title.
   #
   # We'll keep the defauly framerate (60fps).
   def initialize
-    super(800, 600, "Simple Drawing Example")
+    super(800, 600, "Simple Shapes Example")
     @display_fps = true
   end
 
