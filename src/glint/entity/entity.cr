@@ -44,7 +44,7 @@ module Glint
       property update_mode : UpdateMode = UpdateMode::Inherit
 
       # Returns game object's extents (maximum dimensions)
-      getter extents : Dimensions = Dimensions.zero
+      getter extents : Dimension = Dimension.zero
 
       # Updates the entity and its children.
       #
