@@ -1,11 +1,15 @@
 module Glint
   module Shape
+    # A simple circle shape.
     class Circle < Shape
       # The minimum number of segments for drawing.
       MINIMUM_SEGMENTS = 30
 
+      # The angle at which to start drawing outlines.
       DEGREES_START = 0.degrees
-      DEGREES_END   = 360.degrees
+
+      # The angle at which to end drawing outlines.
+      DEGREES_END = 360.degrees
 
       # The radius of the circle.
       @radius = 0
