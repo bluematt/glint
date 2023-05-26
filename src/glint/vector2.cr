@@ -509,3 +509,9 @@ end
 def vec(x : Number = 0, y : Number = 0)
   Vector2.new(x, y)
 end
+
+# A `Position` is a `Vector2`.
+alias Position = Vector2
+
+# A `Dimension` is a `Vector2`.
+alias Dimension = Vector2
