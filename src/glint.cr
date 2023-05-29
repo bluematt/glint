@@ -5,6 +5,19 @@ module Glint
   VERSION = "0.1.0"
 end
 
+# Alias for Raylib::TraceLogLevel.
+#
+# Use Glint::Game#set_log_level to set the log level.
+enum LogLevel
+  All     = Raylib::TraceLogLevel::All
+  Trace   = Raylib::TraceLogLevel::Trace
+  Debug   = Raylib::TraceLogLevel::Debug
+  Info    = Raylib::TraceLogLevel::Info
+  Warning = Raylib::TraceLogLevel::Warning
+  Error   = Raylib::TraceLogLevel::Error
+  Fatal   = Raylib::TraceLogLevel::Fatal
+end
+
 require "./glint/number.cr"
 require "./glint/vector2.cr"
 require "./glint/color.cr"
