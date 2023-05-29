@@ -9,6 +9,9 @@ module Glint
     DEFAULT_TITLE     = "<untitled>"
     DEFAULT_FRAMERATE = 60
 
+    private START_WAIT_TIME = 0.0000001 # seconds
+    private MINIMUM_DELTA_TIME = 0.0 # seconds
+
     # The game `Window`.
     @window : Window
 
@@ -27,6 +30,8 @@ module Glint
     # Whether the game is paused.
     @paused = false
 
+    property fps_position = Vector2.new(8, 8)
+
     # Creates a new game with optional size, title and framerate.
     def initialize(width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, title = DEFAULT_TITLE, @target_framerate = DEFAULT_FRAMERATE)
       @window = Window.new(width, height, title)
@@ -37,11 +42,11 @@ module Glint
     def run
       Raylib.set_target_fps(@target_framerate)
 
-      Raylib.wait_time(0.0000001)
+      Raylib.wait_time(START_WAIT_TIME)
       delta = Game.frame_time
 
       until should_quit?
-        _update(delta) if delta > 0.0
+        _update(delta) if delta > MINIMUM_DELTA_TIME
 
         Raylib.begin_drawing
         _draw
@@ -109,7 +114,7 @@ module Glint
 
     # Display the current FPS.
     def display_fps_text
-      Raylib.draw_fps(8, 8)
+      Raylib.draw_fps(@fps_position.x, @fps_position.y)
     end
 
     # Returns whether the game should quit.
