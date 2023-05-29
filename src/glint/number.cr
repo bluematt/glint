@@ -22,6 +22,17 @@ struct Number
     self
   end
 
+  # Returns a number annotated as frames per second.
+  #
+  # ```
+  # Example:
+  # Game.target_framerate = 30.fps
+  # ```
+  @[AlwaysInline]
+  def fps
+    self
+  end
+
   # Returns a number as an angle, annotated as degrees.
   @[AlwaysInline]
   def degrees
