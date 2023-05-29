@@ -73,7 +73,7 @@ module Glint
         scene._draw
       end
       draw
-      display_fps if @display_fps
+      display_fps_text if @display_fps
     end
 
     # Performs custom drawing.
@@ -108,7 +108,7 @@ module Glint
     end
 
     # Display the current FPS.
-    def display_fps
+    def display_fps_text
       Raylib.draw_fps(8, 8)
     end
 
