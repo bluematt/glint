@@ -12,13 +12,23 @@ module Glint
       enum Button
         {% for button in BUTTONS %}
           # The {{button.id}} `Mouse::Button`.
+          #
+          # ```
+          # {{button.id.stringify.capitalize.id}} = Raylib::MouseButton::{{button.id.stringify.capitalize.id}}
+          # ```
           {{button.id.stringify.capitalize.id}} = Raylib::MouseButton::{{button.id.stringify.capitalize.id}}
         {% end %}
 
         {% for action in STATES %}
           # Returns whether the `Mouse::Button` is in the {{action.id}} state.
-          def {{action.id}}? : Bool
-            Raylib.mouse_button_{{action.id}}? self
+          #
+          # ```
+          # def is_{{action.id}}? : Bool
+          #   Raylib.key_{{action.id}}? self
+          # end
+          # ```
+          def is_{{action.id}}? : Bool
+            Raylib.key_{{action.id}}? self
           end
         {% end %}
       end
@@ -40,14 +50,26 @@ module Glint
 
       {% for action in STATES %}
         # Returns whether `mouse_button` is in the {{action.id}} state.
+        #
+        # ```
+        # def self.{{action.id}}?(mouse_button : Button) : Bool
+        #   mouse_button.is_{{action.id}}?
+        # end
+        # ```
         def self.{{action.id}}?(mouse_button : Button) : Bool
-          mouse_button.{{action.id}}?
+          mouse_button.is_{{action.id}}?
         end
 
         {% for button in Button.constants %}
           # Returns whether `Mouse::Button::{{button.id}}` is in the {{action.id}} state.
+          #
+          # ```
+          # def self.{{button.id.stringify.downcase.id}}_{{action.id}}? : Bool
+          #   Button::{{button.id}}.is_{{action.id}}?
+          # end
+          # ```
           def self.{{button.id.stringify.downcase.id}}_{{action.id}}? : Bool
-            Button::{{button.id}}.{{action.id}}?
+            Button::{{button.id}}.is_{{action.id}}?
           end
         {% end %}
       {% end %}
