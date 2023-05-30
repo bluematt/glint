@@ -4,7 +4,7 @@ require "glint"
 class SimpleLabelExample < Game
   # Set the game to be 800x600 and have an awesome title.
   #
-  # We'll keep the defauly framerate (60fps).
+  # We'll keep the default framerate (60fps).
   def initialize
     super(800, 600, "Colors Example")
     @display_fps = true
