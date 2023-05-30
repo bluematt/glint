@@ -72,5 +72,5 @@ module Glint
   end
 end
 
-# Convenience alias for `Glint::Input::Key`.
-alias Key = Glint::Input::Key
+# Convenience alias for `Glint::Input::Keyboard::Key`.
+alias Key = Glint::Input::Keyboard::Key
