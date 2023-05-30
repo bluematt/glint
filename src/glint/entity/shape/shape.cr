@@ -19,8 +19,8 @@ module Glint
       Outside
     end
 
-    # A `Shape` is a generic shape entity that can be drawn.
-    abstract class Shape < Glint::Entity::Entity
+    # A `Shape` is a generic shape game object that can be drawn.
+    abstract class Shape < GameObject
       # The shape's fill color.
       @fill_color : Color?
       # The shape's outline color.

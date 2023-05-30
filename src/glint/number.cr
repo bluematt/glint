@@ -15,7 +15,7 @@ struct Number
   #
   # ```
   # Example:
-  # self.position.x += 24.pixels # Shift the x position of the entity by 24 pixels.
+  # self.position.x += 24.pixels # Shift the x position of the game object by 24 pixels.
   # ```
   @[AlwaysInline]
   def pixels

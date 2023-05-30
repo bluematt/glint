@@ -1,7 +1,7 @@
 module Glint
   module Physics
     # A game object that has physics properties.
-    abstract class PhysicsObject < Glint::Entity::Entity
+    abstract class PhysicsObject < GameObject
       property velocity : Velocity = Velocity.new
     end
   end

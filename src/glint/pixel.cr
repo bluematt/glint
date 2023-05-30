@@ -1,5 +1,5 @@
 module Glint
-  class Pixel < Glint::Entity::Entity
+  class Pixel < GameObject
     # Draws a colored pixel.
     def self.plot(position : Vector2, color : Color)
       Raylib.draw_pixel_v(position, color)

@@ -1,5 +1,5 @@
 module Glint
-  # Determines where am entity is drawn.
+  # Determines where a game object is drawn.
   enum DrawPosition
     # At an absolute position regardsless of where its parent is positioned.
     Absolute

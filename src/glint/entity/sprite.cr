@@ -1,6 +1,6 @@
 module Glint
   module Entity
-    class Sprite < Entity
+    class Sprite < GameObject
       # The sprite's texture.
       @texture : Raylib::Texture2D
 

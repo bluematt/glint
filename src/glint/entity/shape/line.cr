@@ -25,14 +25,14 @@ module Glint
 
       # Returns the (start) position.
       #
-      # Semantic alias for `Glint::Entity::Entity#position`.
+      # Semantic alias for `Glint::Entity::GameObject#position`.
       def start_position
         @position
       end
 
       # Sets the (start) position.
       #
-      # Semantic alias for `Glint::Entity::Entity#position=`.
+      # Semantic alias for `Glint::Entity::GameObject#position=`.
       def start_position=(start_position : Position)
         @position = start_position
       end

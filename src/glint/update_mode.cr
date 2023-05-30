@@ -1,15 +1,15 @@
 module Glint
-  # Determines if and how an entity is updated.
+  # Determines if and how a game object is updated.
   enum UpdateMode
-    # Inherits the `UpdateMode` of the parent entity.
+    # Inherits the `UpdateMode` of the parent game object.
     Inherit
-    # Updates the entity (and its children) only when the `Game` is not paused.
+    # Updates the game object (and its children) only when the `Game` is not paused.
     Pausable
-    # Updates the entity (and its children) only when the `Game` is paused.
+    # Updates the game object (and its children) only when the `Game` is paused.
     WhenPaused
-    # Always updates the entity (and its children).
+    # Always updates the game object (and its children).
     Always
-    # Prevents the entity (and its children) from being updated.
+    # Prevents the game object (and its children) from being updated.
     Disabled
   end
 end

@@ -1,7 +1,7 @@
 module Glint
   module Entity
     # A scene manages collections of entities.
-    class Scene < Entity
+    class Scene < GameObject
       # The scene's background color.
       property background_color : Color?
 

@@ -1,6 +1,6 @@
 module Glint
   module Control
-    # An entity that displays some text.
+    # A game object that displays some text.
     class Label < Control
       # The default text.
       DEFAULT_TEXT = ""

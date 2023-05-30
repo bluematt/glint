@@ -1,52 +1,52 @@
 module Glint
   module Entity
-    # A generic entity class.
+    # A generic game object class.
     #
-    # An entity is responsible for keeping track of it's own an child entities.
-    abstract class Entity
-      # The entity's default position.
+    # A game object is responsible for keeping track of it's own an child entities.
+    abstract class GameObject
+      # The game object's default position.
       DEFAULT_POSITION = Position.zero
 
-      # The entity's default rotation, in degrees.
+      # The game object's default rotation, in degrees.
       DEFAULT_ROTATION = 0.0.degrees
 
-      # The entity's default pivot.
+      # The game object's default pivot.
       DEFAULT_ORIGIN = Origin::TopLeft
 
-      # The entity's parent, if any.
-      property parent : (Entity | Game)?
+      # The game object's parent, if any.
+      property parent : (GameObject | Game)?
 
       # Returns the child entities.
-      getter children : Array(Entity) = [] of Entity
+      getter children : Array(GameObject) = [] of GameObject
 
-      # The entity's position.
+      # The game object's position.
       @position : Position = DEFAULT_POSITION
 
-      # The entity's rotation.
+      # The game object's rotation.
       @rotation : Float64 = DEFAULT_ROTATION
 
-      # The entity's point of transformation.
+      # The game object's point of transformation.
       property pivot : Origin = DEFAULT_ORIGIN
 
-      # Whether the entity is visible or not.
+      # Whether the game object is visible or not.
       property visible : Bool = true
 
-      # Whether to draw this entity's child entities.
+      # Whether to draw the game object's child game objects.
       property draw_children : Bool = true
 
-      # Whether to draw this entity above its child entities.
+      # Whether to draw the game object above its child game objects.
       property draw_above_children : Bool = false
 
-      # The entity's position relative to its parent.
+      # The game object's position relative to its parent.
       property draw_position : DrawPosition = DrawPosition::Absolute
 
-      # How and when the entity (and its children) is updated.
+      # How and when the game object (and its children) is updated.
       property update_mode : UpdateMode = UpdateMode::Inherit
 
       # Returns game object's extents (maximum dimensions)
       getter extents : Dimension = Dimension.zero
 
-      # Updates the entity and its children.
+      # Updates the game object and its child game object's.
       #
       # Updates are only applied if the `update_mode` allows it, either specifically
       # or by inheriting from its parent.
@@ -61,23 +61,23 @@ module Glint
         end
       end
 
-      # Updates the entity.
+      # Updates the game object.
       #
       # Updates are only applied if the `update_mode` allows it.
       def update(delta); end
 
-      # Updates the entity with a block.
+      # Updates the game object with a block.
       #
       # Updates are only applied if the `update_mode` allows it.
       def update(delta, &)
         yield self
       end
 
-      # Draws the entity and its children.
+      # Draws the game object and its children.
       #
-      # This overrides `Entity#draw`.
+      # This overrides `GameObject#draw`.
       protected def _draw
-        # Draws the children under the current entity.
+        # Draws the children under the current game object.
         if @draw_children
           @children.each { |e| e._draw } unless draw_above_children
         end
@@ -98,51 +98,51 @@ module Glint
           draw
         end
 
-        # Draws the children above the current entity.
+        # Draws the children above the current game object.
         if @draw_children
           @children.each { |e| e._draw } if draw_above_children
         end
       end
 
-      # Draws the entity.
+      # Draws the game object.
       #
-      # This performs any drawing specific for *this* entity.  Any entities in
+      # This performs any drawing specific for *this* game object.  Any entities in
       # `@children` will be drawn automatically (if applicable).
       def draw; end
 
-      # Draws an entity at a specific position.
+      # Draws a game object at a specific position.
       def draw_at(position)
         draw
       end
 
-      # Add an entity to the entity's children for managing later.
+      # Add a game object to the game object's children for managing later.
       #
       # ```
-      # class MyScene < Scene # Scene is an Entity
+      # class MyScene < Scene # Scene is a GameObject
       #   def initialize
       #     @spaceship = Spaceship.new
       #     self << @spaceship
       #   end
       # end
       # ```
-      def <<(other : Entity)
+      def <<(other : GameObject)
         other.parent == self
         @children << other
       end
 
-      # Remove an entity from the entity's children, if it exists.
+      # Remove a game object from the game object's children, if it exists.
       #
       # ```
       # if health <= 0
       #   self.delete @spaceship
       # end
       # ```
-      def delete(other : Entity)
+      def delete(other : GameObject)
         @children.reject { |e| e == other }
       end
 
-      # Returns whether the entity is in the children.
-      def has?(other : Entity)
+      # Returns whether the game object is in the children.
+      def has?(other : GameObject)
         @children.any? other
       end
 
@@ -155,23 +155,23 @@ module Glint
         end
       end
 
-      # Returns the entity's current position.
+      # Returns the game object's current position.
       def position
         @position
       end
 
-      # Sets the entity's position.
+      # Sets the game object's position.
       def position=(position)
         return if !can_update?
         @position = position
       end
 
-      # Returns the entity's current rotation.
+      # Returns the game object's current rotation.
       def rotation
         @rotation
       end
 
-      # Sets the entity's rotation.
+      # Sets the game object's rotation.
       def rotation=(rotation)
         return if !can_update?
         @rotation = rotation
@@ -179,6 +179,9 @@ module Glint
     end
   end
 end
+
+# Convenience alias for `Glint::Entity::GameObject`.
+alias GameObject = Glint::Entity::GameObject
 
 require "./scene.cr"
 require "./sprite.cr"
