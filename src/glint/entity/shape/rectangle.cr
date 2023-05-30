@@ -5,9 +5,8 @@ module Glint
       property size : Dimension = Dimension.new
 
       # Draw a `Rectangle`.
-      def self.draw(position : Position, size : Dimension, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Float32 = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position = OutlinePosition::Centered)
-        raise ArgumentError.new("Invalid width #{width}") if width <= 0
-        raise ArgumentError.new("Invalid height #{height}") if height <= 0
+      def self.draw(position : Position, size : Dimension, fill_color : Color? = nil, outline : Float32 = 0, outline_color : Color? = nil, outline_position = OutlinePosition::Centered)
+        raise ArgumentError.new("Invalid size #{size}") if size.is_invalid_dimension?
 
         # Don't draw fill if no fill color.
         Rectangle.fill(position, size, fill_color) if fill_color
