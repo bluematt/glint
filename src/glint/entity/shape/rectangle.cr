@@ -46,8 +46,10 @@ module Glint
 
       # Draw an outlined rectangle.
       def self.outline(position : Position, size : Dimension, outline : Float32 = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position = OutlinePosition::Centered)
+        raise ArgumentError.new("Invalid outline #{outline}") if outline < 0
+        return if outline <= 0 # Don't draw outline if no outline.
+
         return if outline_color.nil?
-        return if outline <= 0
 
         rect = Rect.new(position, size)
         # TODO Adjust the size of the outline rectangles.
