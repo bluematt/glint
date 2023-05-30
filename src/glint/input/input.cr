@@ -1,6 +1,5 @@
 module Glint
-  module Input
-  end
+  module Input; end
 end
 
 require "./controller.cr"
