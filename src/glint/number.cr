@@ -24,12 +24,15 @@ struct Number
 
   # Returns a number annotated as frames per second.
   #
+  # Negative values are not supported.
+  #
   # ```
   # Example:
   # Game.target_framerate = 30.fps
   # ```
   @[AlwaysInline]
   def fps
+    raise ValueError.new if self < 0
     self
   end
 
