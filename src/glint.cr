@@ -18,6 +18,8 @@ enum LogLevel
   Fatal   = Raylib::TraceLogLevel::Fatal
 end
 
+class ValueError < Exception; end
+
 require "./glint/number.cr"
 require "./glint/vector2.cr"
 require "./glint/color.cr"
