@@ -25,7 +25,7 @@ class SimpleLabelExample < Game
     red = Color::RED
     Rectangle.draw(LEFT, @@line, SIZE, red)
     # Predefined color with an `#modulate` and block.
-    Rectangle.draw(RIGHT, @@line, SIZE, red.modulate { |c| c.a = 127 }, 2, Color::WHITE)
+    Rectangle.draw(RIGHT, @@line, SIZE, red.adjust { |c| c.a = 127 })
 
     # Hex color string (6 bytes)
     Rectangle.draw(LEFT, @@line += @@adjustment, SIZE, Color.new("#00ff00"))
@@ -35,6 +35,10 @@ class SimpleLabelExample < Game
     # Colours from tuples
     Rectangle.draw(LEFT, @@line += @@adjustment, SIZE, Color.new({0, 0, 255}))
     Rectangle.draw(RIGHT, @@line, SIZE, Color.new({0, 0, 255, 127}))
+
+    # Colours from values
+    Rectangle.draw(LEFT, @@line += @@adjustment, SIZE, Color.new(128, 128, 0))
+    Rectangle.draw(RIGHT, @@line, SIZE, Color.new(128, 128, 0).semitransparent!)
   end
 end
 

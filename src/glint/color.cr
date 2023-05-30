@@ -200,6 +200,12 @@ struct Color
     self
   end
 
+  # Sets the alpha value to 127.
+  def semitransparent!
+    @c.a = 127
+    self
+  end
+
   # Returns the color's red channel only.
   def red
     Color.new(@r, 0, 0, 0)
