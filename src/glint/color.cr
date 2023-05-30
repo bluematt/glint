@@ -312,26 +312,54 @@ struct Color
 end
 
 # Creates a `Color` from a `Raylib::Color`.
+#
+# ```
+# # Example:
+# red1 = color(Raylib::Color.new r: 255, g: 0, b: 0, a: 255)
+# red2 = color(Raylib::RED)
+# ```
 def color(c : Raylib::Color)
   Color.new(c)
 end
 
 # Creates a `Color` from a hex string.
+#
+# ```
+# # Example:
+# red1 = color("#ff0000")
+# red2 = color("#FF0000FF")
+# red3 = color("FF0000")
+# ```
 def color(hex : String)
   Color.new(hex)
 end
 
 # Creates a `Color` from a value.
+#
+# ```
+# # Example:
+# red = color(0xFF000000)
+# ```
 def color(value : Number)
   Color.new(value)
 end
 
 # Creates a `Color`.
+#
+# ```
+# # Example:
+# red = color(255, 0, 0)
+# ```
 def color(r : Number, g : Number, b : Number, a : Number = Color::MAXIMUM_VALUE)
   Color.new(r, g, b, a)
 end
 
 # Creates a `Color` from a tuple.
+#
+# ```
+# # Example:
+# red = color({255, 0, 0})
+# ```
 def color(values : Tuple(Int32, Int32, Int32) | Tuple(Int32, Int32, Int32, Int32))
   Color.new(values)
 end
