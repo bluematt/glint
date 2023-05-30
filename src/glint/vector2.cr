@@ -6,43 +6,57 @@
 # Some methods reimplemented from https://github.com/unn4m3d/crystaledge/blob/master/src/crystaledge/vector2.cr
 struct Vector2
   # The wrapped `Raylib::Vector`.
-  #
-  # It is unlikely that you will need to access this directly.
   @v : Raylib::Vector2
 
   # Creates a new vector from `Raylib::Vector`.
-  #
-  # This is mostly used internally to convert between the friendly `Vector2`
-  # class and .
   def initialize(@v : Raylib::Vector2); end
 
-  # Creates a new vector from *x* and *y* components.
+  # Creates a new vector from x/y components.
   def initialize(x : Number = 0, y : Number = 0)
     @v = Raylib::Vector2.new x: x, y: y
   end
 
+  # A zero vector.
   ZERO = Vector2.new(0, 0)
-  ONE  = Vector2.new(1, 1)
+  # A unit vector.
+  ONE = Vector2.new(1, 1)
+  # :ditto:
   UNIT = ONE
 
-  UP    = Vector2.new(0, -1)
+  # Vector representing the up direction.
+  UP = Vector2.new(0, -1)
+  # Vector representing the right direction.
   RIGHT = Vector2.new(1, 0)
-  DOWN  = Vector2.new(0, 1)
-  LEFT  = Vector2.new(-1, 0)
+  # Vector representing the down direction.
+  DOWN = Vector2.new(0, 1)
+  # Vector representing the left direction.
+  LEFT = Vector2.new(-1, 0)
 
-  UP_RIGHT   = UP + RIGHT
+  # Vector representing the up-right direction.
+  UP_RIGHT = UP + RIGHT
+  # Vector representing the down-right direction.
   DOWN_RIGHT = DOWN + RIGHT
-  DOWN_LEFT  = DOWN + LEFT
-  UP_LEFT    = UP + LEFT
+  # Vector representing the down-left direction.
+  DOWN_LEFT = DOWN + LEFT
+  # Vector representing the up-left direction.
+  UP_LEFT = UP + LEFT
 
+  # Vector representing the north direction.
   NORTH = UP
+  # Vector representing the south direction.
   SOUTH = DOWN
-  WEST  = LEFT
-  EAST  = RIGHT
+  # Vector representing the west direction.
+  WEST = LEFT
+  # Vector representing the east direction.
+  EAST = RIGHT
 
+  # Vector representing the north east direction.
   NORTH_EAST = NORTH + EAST
+  # Vector representing the south east direction.
   SOUTH_EAST = SOUTH + EAST
+  # Vector representing the south west direction.
   SOUTH_WEST = SOUTH + WEST
+  # Vector representing the north west direction.
   NORTH_WEST = NORTH + WEST
 
   # Returns the vector's x component.
