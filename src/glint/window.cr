@@ -3,12 +3,12 @@ module Glint
   class Window
     @title : String
 
-    # Create a new `Window`.
+    # Create a new `Window` with width/height.
     def initialize(height : Number, width : Number, @title : String)
       Raylib.init_window(height, width, @title)
     end
 
-    # :ditto:
+    # Create a new `Window` with a `Dimension`.
     def initialize(size : Dimension, @title : String)
       Raylib.init_window(size.x, size.y, @title)
     end
