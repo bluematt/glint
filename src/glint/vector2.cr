@@ -403,12 +403,12 @@ struct Vector2
 
   # Returns whether two vectors are equal.
   def ==(other : Vector2)
-    @x == other.x && @y == other.y
+    self.x == other.x && self.y == other.y
   end
 
   # Returns whether two vectors are not equal.
   def !=(other : Vector2)
-    @x != other.x || @y != other.y
+    self.x != other.x || self.y != other.y
   end
 
   # Clones the vector and passes it into a block if given.
@@ -491,13 +491,13 @@ struct Vector2
     self.width < 0 || self.height < 0
   end
 
-  forward_missing_to(@v)
-
   # Takes a block and adjusts the `Vector2` in the way(s) defined by the block.
   def adjust(&block)
     @v = yield self
     self
   end
+
+  forward_missing_to(@v)
 end
 
 # Creates a `Vector2` from a `Raylib::Vector2`.
