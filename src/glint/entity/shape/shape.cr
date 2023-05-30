@@ -75,6 +75,7 @@ end
 
 require "./circle.cr"
 require "./line.cr"
+require "./polyline.cr"
 require "./polygon.cr"
 require "./rectangle.cr"
 

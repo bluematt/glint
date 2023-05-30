@@ -1,6 +1,6 @@
 module Glint
   module Shape
-    class Polygon < Shape; end
+    class Polygon < Polyline; end
   end
 end
 
