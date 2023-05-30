@@ -55,9 +55,15 @@ module Glint
         when @update_mode.disabled?
           return
         else
-          @children.each { |e| e._update(delta) }
-          # Pass self in as a block so that we can apply any yield'ed callbacks to it.
-          update(delta) { self }
+          # Spawn a fiber for each update cycle.  This will spawn a fiber for each
+          # subsequent update.
+          spawn do
+            @children.each do |e|
+              e._update(delta)
+            end
+            # Pass self in as a block so that we can apply any yield'ed callbacks to it.
+            update(delta) { self }
+          end
         end
       end
 
