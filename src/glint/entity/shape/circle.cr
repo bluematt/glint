@@ -3,26 +3,16 @@ module Glint
     # A simple circle shape.
     class Circle < Shape
       # The minimum number of segments for drawing.
-      MINIMUM_SEGMENTS = 30
+      private MINIMUM_SEGMENTS = 30
 
       # The angle at which to start drawing outlines.
-      DEGREES_START = 0.degrees
+      private DEGREES_START = 0.degrees
 
       # The angle at which to end drawing outlines.
-      DEGREES_END = 360.degrees
+      private DEGREES_END = 360.degrees
 
       # The radius of the circle.
       @radius = 0
-
-      # Draw the circle.
-      def draw
-        Circle.draw(@position, @radius, @fill_color, @outline, @outline_color, @outline_position)
-      end
-
-      # Draw a circle.
-      def self.draw(x : Number, y : Number, radius : Number = 0, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
-        Circle.draw(Vector2.new(x, y), radius, fill_color, outline, outline_color, outline_position)
-      end
 
       # Draw a circle.
       def self.draw(position : Vector2 = Vector2.new, radius : Number = 0, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
@@ -39,14 +29,17 @@ module Glint
         Circle.outline(position, radius, outline, outline_color, outline_position) if outline_color
       end
 
-      # Draw a disc (filled circle).
+      # Draw a circle at x/y coordinates.
+      def self.draw(x : Number, y : Number, radius : Number = 0, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
+        Circle.draw(Vector2.new(x, y), radius, fill_color, outline, outline_color, outline_position)
+      end
+
+      # Draw a filled circle.
       def self.fill(position : Vector2, radius : Number, fill_color : Color = DEFAULT_FILL_COLOR)
         Raylib.draw_circle(position.x, position.y, radius, fill_color)
       end
 
-      # Draw an outline (outlined circle).
-      #
-      # The position of the outline relative to the fill depends on the *outline_position*.
+      # Draw an circle outline.
       def self.outline(position : Vector2, radius : Number, outline : Number = 1, outline_color : Color = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
         if outline == 1
           case outline_position
@@ -77,6 +70,11 @@ module Glint
           end
           Raylib.draw_ring(position, inner, outer, DEGREES_START, DEGREES_END, segments, outline_color)
         end
+      end
+
+      # Draw the circle.
+      def draw
+        Circle.draw(@position, @radius, @fill_color, @outline, @outline_color, @outline_position)
       end
     end
   end
