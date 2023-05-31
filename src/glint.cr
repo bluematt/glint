@@ -5,9 +5,11 @@ module Glint
   VERSION = "0.1.0"
 end
 
-# Alias for Raylib::TraceLogLevel.
+# Alias for `Raylib::TraceLogLevel`.
 #
-# Use Glint::Game#set_log_level to set the log level.
+# Use `Glint::Game#log_level=` to set the log level.
+#
+# By default, the log level is `Fatal` for `--release`, otherwise `All`.
 enum LogLevel
   All     = Raylib::TraceLogLevel::All
   Trace   = Raylib::TraceLogLevel::Trace
