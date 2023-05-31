@@ -24,6 +24,7 @@ module Glint
       enum Button
         {% for button in BUTTONS %}
           # The {{button.id.stringify.camelcase.id}} `Controller::Button`.
+          #
           # ```
           # {{button.id.stringify.camelcase.id}} = Raylib::GamepadButton::{{button.id.stringify.camelcase.id}}
           # ```
@@ -45,12 +46,19 @@ module Glint
       end
 
       class Controller
+        # Returns whether the specified controller is available.
         def self.available?(id)
           Raylib.gamepad_available?(id)
         end
 
+        # Returns the name of the specified controller.
+        def self.name(id)
+          Raylib.get_gamepad_name(id)
+        end
+
         @id : Int32
 
+        # Creates a `Controller`.
         def initialize(@id); end
 
         # Returns whether the controller is available.
@@ -93,6 +101,11 @@ module Glint
         # Returns the `Controller`'s id.
         def id
           @id
+        end
+
+        # Returns the name of the `Controller`.
+        def name
+          Controller.name(self.id)
         end
       end
     end
