@@ -3,10 +3,10 @@ module Glint
     # Utility module for managing mouse-related features.
     module Mouse
       # The mouse buttons.
-      private BUTTONS = ["left", "right", "middle", "side", "extra", "forward", "back"]
+      private BUTTONS = [:left, :right, :middle, :side, :extra, :forward, :back]
 
       # The mouse button states.
-      private STATES = ["pressed", "down", "released", "up"]
+      private STATES = [:pressed, :down, :released, :up]
 
       # Mouse buttons
       enum Button
