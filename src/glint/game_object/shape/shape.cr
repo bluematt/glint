@@ -78,6 +78,3 @@ require "./line.cr"
 require "./polyline.cr"
 require "./polygon.cr"
 require "./rectangle.cr"
-
-# Convenience alias for `Glint::Shape::OutlinePosition`.
-alias OutlinePosition = Glint::Shape::OutlinePosition

@@ -22,7 +22,7 @@ describe Number do
     10.fps.should eq(10)
   end
 
-  expect_raises(ValueError) do
+  expect_raises(OverflowError) do
     -10.fps.should eq(0)
   end
 

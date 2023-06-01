@@ -1,3 +1,5 @@
+alias Vector2 = Glint::Vector2
+
 describe Vector2 do
   it "should be negated" do
     v = Vector2.new x: 1, y: 2

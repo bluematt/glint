@@ -253,6 +253,3 @@ end
 def rect(position : Position = Position.new(0, 0), width : Number = 0, height : Number = 0)
   Rect.new(position, width, height)
 end
-
-# Convenience alias for `Glint::Rect`.
-alias Rect = Glint::Rect

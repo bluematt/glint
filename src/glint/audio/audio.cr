@@ -1,6 +1,5 @@
 module Glint
-  module Audio
-  end
+  module Audio; end
 end
 
 require "./music.cr"

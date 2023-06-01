@@ -11,7 +11,7 @@ module Glint
         @points << point
       end
 
-      def self.draw(points : Array(Position), fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR)
+      def self.draw(points : Array(Position), fill_color : Color? = nil, outline : Number = 0, outline_color : Color? = nil)
       end
 
       def draw
@@ -20,6 +20,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias for `Glint::Shape::Polyline`.
-alias Polyline = Glint::Shape::Polyline

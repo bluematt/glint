@@ -107,7 +107,7 @@ module Glint
 
     # Returns whether the `Window` is resizable.
     def resizable?
-      Raylib.window_state? (Raylib::ConfigFlags::WindowResizable)
+      Raylib.window_state?(Raylib::ConfigFlags::WindowResizable)
     end
 
     # Returns whether the `Window` is resized.
@@ -156,6 +156,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias for `Glint::Window`.
-alias Window = Glint::Window

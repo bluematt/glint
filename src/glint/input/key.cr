@@ -18,7 +18,7 @@ module Glint
       ]
 
       # The key states.
-      private STATES = [:pressed, :down, :released, :up]
+      # private STATES = [:pressed, :down, :released, :up]
 
       enum Key
         {% for k in KEYS %}
@@ -71,6 +71,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias for `Glint::Input::Keyboard::Key`.
-alias Key = Glint::Input::Keyboard::Key

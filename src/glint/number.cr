@@ -20,7 +20,7 @@ struct Number
   # ```
   @[AlwaysInline]
   def fps
-    raise ValueError.new if self < 0
+    raise OverflowError.new if self < 0
     self
   end
 

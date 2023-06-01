@@ -1,10 +1,9 @@
 require "glint"
 
+alias Color = Glint::Color
+
 # Opens and window and draws some simple shapes.
-class SimpleDrawingExample < Game
-  # Set the game to be 800x600 and have an awesome title.
-  #
-  # We'll keep the defauly framerate (60fps).
+class SimpleShapesExample < Glint::Game
   def initialize
     super(800, 600, "Simple Shapes Example")
     @display_fps = true
@@ -12,13 +11,13 @@ class SimpleDrawingExample < Game
 
   # Draw some shapes.
   def draw
-    # Red line frmo top left to the center of the window
-    Line.draw(vec(0, 0), vec(400, 300), 4, color({255, 0, 0}))
     # Blue circle with thick yellow outline at center of window
-    Circle.draw(vec(400, 300), 50, Color::BLUE, 3, Color::YELLOW)
+    Glint::Shape::Circle.draw(vec(400, 300), 50, Color::BLUE, 3, Color::YELLOW)
     # Green square with a thin white outline to right of the circle
-    Square.draw(vec(500, 300), vec(100, 100), Color::GREEN, 1, Color::WHITE)
+    Glint::Shape::Rectangle.draw(vec(500, 200), vec(50, 200), Color::GREEN, 1, Color::WHITE)
+    # Red line across the window.
+    Glint::Shape::Line.draw(vec(100, 100), vec(700, 500), 4, color({255, 0, 0}))w
   end
 end
 
-SimpleDrawingExample.new.run
+SimpleShapesExample.new.run

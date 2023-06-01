@@ -6,7 +6,7 @@ module Glint
       private BUTTONS = [:left, :right, :middle, :side, :extra, :forward, :back]
 
       # The mouse button states.
-      private STATES = [:pressed, :down, :released, :up]
+      # private STATES = [:pressed, :down, :released, :up]
 
       # Mouse buttons
       enum Button
@@ -76,6 +76,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias to `Glint::Input::Mouse`.
-alias Mouse = Glint::Input::Mouse

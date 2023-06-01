@@ -13,7 +13,7 @@ module Glint
       ]
 
       # The button states.
-      private STATES = [:pressed, :down, :released, :up]
+      # private STATES = [:pressed, :down, :released, :up]
 
       private AXES = [
         :left_x, :left_y,
@@ -111,6 +111,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias for `Glint::Input::Controller`.
-alias Controller = Glint::Input::Controller

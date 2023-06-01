@@ -6,9 +6,9 @@ module Glint
 
       # Draw a line.
       def self.draw(start_position : Position, end_position : Position, width : Float32 = 1, color : Color? = Color::BLACK)
-          raise ArgumentError.new("Invalid width #{width}") if width < 0
-          return if width <= 0 # Don't draw line if no width.
-          return if color.nil? # Don't draw line if no color.
+        raise ArgumentError.new("Invalid width #{width}") if width < 0
+        return if width <= 0 # Don't draw line if no width.
+        return if color.nil? # Don't draw line if no color.
 
         Raylib.draw_line_ex(start_position, end_position, width, color)
       end
@@ -65,6 +65,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias for `Glint::Shape::Line`.
-alias Line = Glint::Shape::Line

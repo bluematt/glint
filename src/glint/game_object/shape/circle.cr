@@ -15,7 +15,7 @@ module Glint
       @radius = 0
 
       # Draw a circle.
-      def self.draw(position : Vector2 = Vector2.new, radius : Number = 0, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
+      def self.draw(position : Vector2 = Vector2.new, radius : Number = 0, fill_color : Color? = nil, outline : Number = 0, outline_color : Color? = nil, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
         raise ArgumentError.new("Invalid radius #{radius}") if radius < 0
         return if radius <= 0 # Don't draw anything if no radius.
 
@@ -30,17 +30,17 @@ module Glint
       end
 
       # Draw a circle at x/y coordinates.
-      def self.draw(x : Number, y : Number, radius : Number = 0, fill_color : Color? = DEFAULT_FILL_COLOR, outline : Number = 0, outline_color : Color? = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
+      def self.draw(x : Number, y : Number, radius : Number = 0, fill_color : Color? = nil, outline : Number = 0, outline_color : Color? = nil, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
         Circle.draw(Vector2.new(x, y), radius, fill_color, outline, outline_color, outline_position)
       end
 
       # Draw a filled circle.
-      def self.fill(position : Vector2, radius : Number, fill_color : Color = DEFAULT_FILL_COLOR)
+      def self.fill(position : Vector2, radius : Number, fill_color : Color)
         Raylib.draw_circle(position.x, position.y, radius, fill_color)
       end
 
       # Draw an circle outline.
-      def self.outline(position : Vector2, radius : Number, outline : Number = 1, outline_color : Color = DEFAULT_OUTLINE_COLOR, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
+      def self.outline(position : Vector2, radius : Number, outline : Number = 1, outline_color : Color = nil, outline_position : OutlinePosition = DEFAULT_OUTLINE_POSITION)
         if outline == 1
           case outline_position
           when .inside?
@@ -79,6 +79,3 @@ module Glint
     end
   end
 end
-
-# Convenience alias for `Glint::Shape::Circle`.
-alias Circle = Glint::Shape::Circle

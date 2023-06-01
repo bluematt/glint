@@ -1,16 +1,16 @@
 require "glint"
 
+alias Color = Glint::Color
+alias Rectangle = Glint::Shape::Rectangle
+
 # Opens and window and displays some colored rectangles.
-class SimpleLabelExample < Game
-  # Set the game to be 800x600 and have an awesome title.
-  #
-  # We'll keep the default framerate (60fps).
+class SimpleColorExample < Glint::Game
   def initialize
     super(800, 600, "Colors Example")
     @display_fps = true
   end
 
-  SIZE  = Dimension.new(370, 20)
+  SIZE  = Glint::Dimension.new(370, 20)
   LEFT  =  20
   RIGHT = 410
 
@@ -42,4 +42,4 @@ class SimpleLabelExample < Game
   end
 end
 
-SimpleLabelExample.new.run
+SimpleColorExample.new.run
