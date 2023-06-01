@@ -11,49 +11,37 @@ module Glint
       # The default text color.
       DEFAULT_COLOR = Color::BLACK
 
-      # The default text spacing.
-      DEFAULT_SPACING = 1
-
       # The label's text.
-      property text : String
+      property text : String = ""
 
       # The label's font size.
-      property font_size : Int32 = DEFAULT_FONT_SIZE
+      property font_size : Int32 = 20
 
       # The label's color.
-      property color : Color = DEFAULT_COLOR
+      property color : Color = Color::BLACK
 
       # The label's font.
       property font : Raylib::Font
 
       # The label's text spacing.
-      property spacing = DEFAULT_SPACING
+      property spacing = 1
 
       # Creates a `Label`.
-      def initialize(@text = DEFAULT_TEXT, @position = DEFAULT_POSITION, @font_size = DEFAULT_FONT_SIZE, @color = DEFAULT_COLOR)
-        @font = Font.default
-        @spacing = DEFAULT_SPACING
+      def initialize(@text = "", @position = Position.new, @color = Color::BLACK, @font_size = 20, @font = Font.default, @spacing = 1); end
+
+      # Draws a `Label`.
+      def self.draw(text : String = "", position : Position = Position.new, color = Color::BLACK, font_size : Int32 = 30, font : Font = Font.default, spacing : Float = 1.0, rotation : Float = 0.0, offset : Position = Position.new)
+        Raylib.draw_text_pro(font, text, position, offset, rotation, font_size, spacing, color)
       end
 
-      # Draw the `Label`.
+      # Draws the `Label`.
       def draw
-        draw_at(@position)
-      end
-
-      # Draw the `Label` at a specific position.
-      def draw_at(position : Position)
-        Raylib.draw_text_pro(@font, @text, position, @pivot.from(get_extents), @rotation, @font_size, @spacing, @color)
+        Label.draw(@text, @position, @color, @font_size, @font, @spacing, @rotation, @pivot.from(self.extents))
       end
 
       # Returns the extents for the `Label`'s text.
-      def get_extents
+      def extents
         Dimension.new(Raylib.measure_text_ex(@font, @text, @font_size, @spacing))
-      end
-
-      # Draws a `Label`.
-      def self.draw(text = DEFAULT_TEXT, position = DEFAULT_POSITION, font_size = DEFAULT_FONT_SIZE, color = DEFAULT_COLOR)
-        label = Label.new(text, position, font_size, color)
-        label.draw
       end
     end
   end
