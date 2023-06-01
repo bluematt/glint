@@ -52,7 +52,7 @@ $ brew install raylib
 # my_game.cr
 require "glint"
 
-class MyGame < Game
+class MyGame < Glint::Game
   def initialize
     @display_fps = true
     super(800, 600, "My Awesome Game")
